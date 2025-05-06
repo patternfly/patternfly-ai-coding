@@ -1,0 +1,102 @@
+---
+description: Vibe code a PatternFly UI
+globs: 
+alwaysApply: false
+---
+# Setting up a PatternFly Application using patternfly-react-seed
+
+This guide outlines the steps to clone the [patternfly-react-seed](mdc:https:/github.com/patternfly/patternfly-react-seed) repository and use it as a starting point for building a new PatternFly application.
+
+The `patternfly-react-seed` project provides a scaffold for web apps, giving developers a quick start with PatternFly. It includes an application layout with a header and sidebar, routing, a build pipeline, a test suite, and code quality tools.
+
+## Prerequisites: Environment Setup
+
+Before you begin, ensure your development environment is correctly configured:
+
+1.  **Node.js and npm:** Both Node.js and npm (Node Package Manager) must be installed and accessible in your system's PATH. 
+    *   You can check their versions by running: `node --version && npm --version`
+    *   If they are not found, download and install Node.js from [https://nodejs.org/](mdc:https:/nodejs.org). npm is included with Node.js.
+2.  **Using nvm (Optional but Recommended):** If you use Node Version Manager (nvm):
+    *   Ensure `nvm` itself is loaded in your shell. If `nvm` command is not found, you might need to add sourcing lines to your shell configuration file (e.g., `~/.zshrc`, `~/.bash_profile`, `~/.bashrc`) and then reload the configuration (e.g., `source ~/.zshrc`). Example lines for `.zshrc` or `.bashrc`:
+        ```bash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+        ```
+    *   Install a Node.js version if needed: `nvm install node` (for latest) or `nvm install <version>`.
+    *   Ensure you are using a Node.js version: `nvm use node` or `nvm use <version>`.
+
+## Quick Start
+
+1.  **Clone the repository:** The AI assistant can run this for you.
+    ```bash
+    git clone https://github.com/patternfly/patternfly-react-seed
+    ```
+
+2.  **Navigate into the project directory:** The AI assistant will ensure its commands run in this directory. All `npm install` and `npm run` commands must be executed from within the `patternfly-react-seed` project directory.
+    ```bash
+    cd patternfly-react-seed
+    ```
+
+3.  **Install dependencies:** The AI assistant can run this for you after confirming Node.js/npm are available.
+    ```bash
+    npm install
+    ```
+
+4.  **Start the development server (User Action Recommended):**
+    *   **Recommended:** It is best for the **user to run the development server in a separate, dedicated terminal window or tab.**
+        1.  Open a new terminal.
+        2.  Navigate to the `patternfly-react-seed` project directory (e.g., `cd path/to/patternfly-react-seed`).
+        3.  Run the command: `npm run start:dev`
+    *   This approach allows you to see the live server output (compilation status, errors, etc.) directly, which is crucial for troubleshooting, without blocking the AI assistant's terminal access.
+    *   The server typically runs on `http://localhost:9000` (this can be confirmed in `webpack.dev.js`).
+    *   If the AI assistant needs to (re)start the server (e.g., after installing packages or making configuration changes), it will still propose the `npm run start:dev` command. However, the user should be aware that the AI running this command might obscure direct error visibility compared to running it in their own terminal.
+
+This will start the development server, and you can begin building your application. Refer to the [README.md](mdc:README.md) in the cloned repository for more detailed information on development scripts, configuration, and available features.
+
+## Indexing PatternFly Documentation and Code
+
+To have easy access to the official PatternFly documentation and codebase within your IDE, you should index the following resources:
+
+1.  **PatternFly Official Documentation:**
+    *   Use your IDE's features to add a new documentation source.
+    *   Provide the URL: `https://www.patternfly.org/`
+
+2.  **PatternFly Core Code (HTML/CSS):**
+    *   Use your IDE's features to index a Git repository.
+    *   Provide the URL: `https://github.com/patternfly/patternfly`
+
+3.  **PatternFly React Code:**
+    *   Use your IDE's features to index a Git repository.
+    *   Provide the URL: `https://github.com/patternfly/patternfly-react`
+
+4.  **Additional Local Documentation:**
+    *   For additional context on PatternFly Chatbot, also reference the local file: [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) (see Chatbot Implementation section below for more details).
+    *   For information on PatternFly React Component Groups, reference the local file: [patternfly-react-component-groups.txt](mdc:patternfly-react-component-groups.txt)
+
+## General PatternFly Development Guidelines
+
+When building applications with PatternFly, keep the following in mind:
+
+*   **Class Naming:** Always use current PatternFly class names. Valid class names start with `pf-v6-`. Avoid using older class names, such as those prefixed with `pf-v5-`.
+*   **Styling:** Prefer PatternFly utility classes for custom styling needs. Avoid writing custom CSS whenever possible. PatternFly provides a rich set of utility classes for common styling adjustments (spacing, typography, flexbox, etc.). Refer to the PatternFly documentation for available utility classes.
+*   **Troubleshooting Component Usage:** If component imports are failing or components are not behaving as expected, consult the official PatternFly documentation and **especially the 'View Code' or example sections of the relevant component/demo pages** on [patternfly.org](mdc:https:/www.patternfly.org). Providing these code snippets to the AI assistant can greatly expedite troubleshooting.
+
+## PatternFly Chatbot Implementation
+
+When implementing the PatternFly Chatbot feature:
+
+*   **Primary Context:** The file [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) should be considered the primary source of information for understanding the chatbot's internal structure, available components (e.g., `Chatbot.tsx`, `ChatMessage.tsx`), and how they are organized.
+*   **Package Reference:** Based on the context from `patternfly-chatbot.txt`, assume the relevant NPM package for the chatbot is `@patternfly/chatbot`. 
+    *   Installation: `npm install @patternfly/chatbot`
+*   **Import Paths & Demo Code:** 
+    *   Many specific chatbot sub-components (e.g., `ChatbotContent`, `MessageBar`, `Message`) are often imported from a **dynamic path** like `'@patternfly/chatbot/dist/dynamic/...'`. 
+    *   **Crucial Tip:** When implementing or troubleshooting the chatbot, refer to the official PatternFly demo pages. If possible, **provide the AI assistant with the relevant demo source code snippet** for the specific feature or layout you are trying to achieve. This is the most reliable way to ensure correct component usage, props, and import paths.
+*   **CSS Styling:** 
+    *   Ensure the chatbot's CSS is imported, typically: `import '@patternfly/chatbot/dist/css/main.css';`
+    *   The path to this CSS directory (e.g., `node_modules/@patternfly/chatbot/dist/css`) may need to be added to `stylePaths.js` for Webpack to process it correctly.
+*   **Inspiration and Structure (from Demos):**
+    *   For a **default chatbot** (often in an overlay or modal), refer to the structure and components used in the [Basic Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot).
+    *   For an **embedded chatbot** (integrated directly into a page section), refer to the structure and components used in the [Embedded Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot).
+    *   In general, the [Chatbot Demos Overview](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo) is a good resource for various chatbot patterns and features.
+*   This guidance (especially regarding package name, primary context file, and reliance on demo code for imports) supersedes other general references if there are discrepancies.
