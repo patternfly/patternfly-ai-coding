@@ -56,7 +56,7 @@ This will start the development server, and you can begin building your applicat
 
 ## Indexing PatternFly Documentation and Code
 
-To have easy access to the official PatternFly documentation and codebase within your IDE, you should index the following resources:
+To have easy access to the official PatternFly documentation and codebase within your IDE, you should index or be aware of the following resources:
 
 1.  **PatternFly Official Documentation:**
     *   Use your IDE's features to add a new documentation source.
@@ -70,7 +70,10 @@ To have easy access to the official PatternFly documentation and codebase within
     *   Use your IDE's features to index a Git repository.
     *   Provide the URL: `https://github.com/patternfly/patternfly-react`
 
-4.  **Additional Local Documentation:**
+4.  **PatternFly React Charts Documentation:**
+    *   For specific guidance on using PatternFly charts, refer to the official `@patternfly/react-charts` README: [https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) (See also "PatternFly Charts Implementation" below).
+
+5.  **Additional Local Documentation:**
     *   For additional context on PatternFly Chatbot, also reference the local file: [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) (see Chatbot Implementation section below for more details).
     *   For information on PatternFly React Component Groups, reference the local file: [patternfly-react-component-groups.txt](mdc:patternfly-react-component-groups.txt)
 
@@ -80,7 +83,33 @@ When building applications with PatternFly, keep the following in mind:
 
 *   **Class Naming:** Always use current PatternFly class names. Valid class names start with `pf-v6-`. Avoid using older class names, such as those prefixed with `pf-v5-`.
 *   **Styling:** Prefer PatternFly utility classes for custom styling needs. Avoid writing custom CSS whenever possible. PatternFly provides a rich set of utility classes for common styling adjustments (spacing, typography, flexbox, etc.). Refer to the PatternFly documentation for available utility classes.
-*   **Troubleshooting Component Usage:** If component imports are failing or components are not behaving as expected, consult the official PatternFly documentation and **especially the 'View Code' or example sections of the relevant component/demo pages** on [patternfly.org](mdc:https:/www.patternfly.org). Providing these code snippets to the AI assistant can greatly expedite troubleshooting.
+*   **Text Components (PatternFly 6+):** The `Text`, `TextContent`, and `TextVariants` components from earlier PatternFly versions are generally replaced by the more versatile `Content` component. Use `<Content component="p">...</Content>` for paragraphs, `<Content component="small">...</Content>` for small text, etc., or embed standard HTML tags within `<Content>`.
+*   **Troubleshooting & Sourcing Example Code:**
+    *   When component imports are failing, components are not behaving as expected, or when starting to build a new UI feature, consult the official PatternFly documentation.
+    *   **Crucially, examine the "View Code" or example sections on the relevant component/demo pages on [patternfly.org](mdc:https:/www.patternfly.org).**
+    *   **Additionally, a great starting point is to look for `*.tsx` (or `*.jsx`) example or demo code directly within the source repositories** of PatternFly (e.g., in `patternfly/patternfly-react` under paths like `packages/react-core/src/components/**/examples/`) or related seed projects. This can provide well-structured, working examples.
+    *   Providing these code snippets or direct documentation/repository links to the AI assistant can greatly expedite troubleshooting and development.
+    *   For chart-specific issues, the [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) and the "PatternFly Charts Implementation" guidelines below are key resources.
+*   **Dropdown Positioning (Clipping Issues):** If a `Dropdown` menu is clipped or not appearing in the correct place, use the `popperProps` prop on the `Dropdown` component.
+    *   Set `popperProps={{ position: 'right', enableFlip: true }}` (or other positions like `'left'`, `'auto'`) to control the menu's alignment and allow it to flip if needed.
+    *   For more complex clipping issues caused by parent containers, `popperProps={{ appendTo: () => document.body }}` can append the menu to the document body, taking it out of the restrictive parent's stacking context.
+    *   Refer to the [PatternFly Dropdown documentation (PopperProps section)](mdc:https:/www.patternfly.org/components/menus/dropdown#dropdownpopperprops) for more details.
+*   **Using Icons from `@patternfly/react-icons`:** When using an icon from `@patternfly/react-icons` (e.g., `CubesIcon`, `EllipsisVIcon`), it's best practice to wrap it with the PatternFly `Icon` component (`import { Icon } from '@patternfly/react-core';`). This allows you to control the icon's size, color (via status), and other properties consistently with the PatternFly design system.
+    *   Example: `<Icon size="md" status="info"><YourImportedIcon /></Icon>`
+    *   Refer to the [PatternFly Icon component documentation](mdc:https:/www.patternfly.org/components/icon) for available props like `size`, `status`, `isInlined`, etc.
+
+## PatternFly Charts Implementation
+
+When working with `@patternfly/react-charts`:
+
+*   **Package Installation:** Ensure `@patternfly/react-charts` is installed: `npm install @patternfly/react-charts`.
+*   **Peer Dependencies:** This package has several peer dependencies, primarily from the `victory-*` family (e.g., `victory-core`, `victory-pie`) and `echarts`. While many are marked optional, specific chart components will require them. Consult the `@patternfly/react-charts` `package.json` (inside `node_modules`) or its README for the full list. Install necessary peer dependencies explicitly if issues arise (e.g., `npm install victory-core victory-pie`).
+*   **Import Paths:** 
+    *   Based on the underlying charting library a component uses, the import path may need to be specific:
+        *   For charts based on **Victory** (like `ChartDonut`), use: `import { ChartDonut } from '@patternfly/react-charts/victory';`
+        *   For charts based on **ECharts**, use: `import { SomeEChartComponent } from '@patternfly/react-charts/echarts';`
+    *   If a "module not found" error occurs for `@patternfly/react-charts` itself, ensure the package is correctly installed and `node_modules` is not corrupted (consider deleting `node_modules`, `package-lock.json`, and running `npm install` again).
+*   **Documentation:** The primary documentation is the [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme).
 
 ## PatternFly Chatbot Implementation
 
