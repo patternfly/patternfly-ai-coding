@@ -102,8 +102,20 @@ When building applications with PatternFly, keep the following in mind:
 
 When working with `@patternfly/react-charts`:
 
-*   **Package Installation:** Ensure `@patternfly/react-charts` is installed: `npm install @patternfly/react-charts`.
-*   **Peer Dependencies:** This package has several peer dependencies, primarily from the `victory-*` family (e.g., `victory-core`, `victory-pie`) and `echarts`. While many are marked optional, specific chart components will require them. Consult the `@patternfly/react-charts` `package.json` (inside `node_modules`) or its README for the full list. Install necessary peer dependencies explicitly if issues arise (e.g., `npm install victory-core victory-pie`).
+*   **Package Installation & Core Dependencies:**
+    *   Install `@patternfly/react-charts`: `npm install @patternfly/react-charts`
+    *   **Crucially, you must also install the underlying charting library you intend to use.**
+        *   For **Victory-based charts** (e.g., `ChartDonut`, `ChartLine`), install the `victory` package:
+            ```bash
+            npm install victory
+            ```
+            (This package bundles common Victory components like `victory-core`, `victory-pie`, `victory-chart`, etc.)
+        *   For **ECharts-based charts**, install the `echarts` package:
+            ```bash
+            npm install echarts
+            ```
+    *   Installing these alongside `@patternfly/react-charts` (e.g., `npm install @patternfly/react-charts victory`) helps prevent common runtime errors due to missing peer dependencies.
+*   **Peer Dependencies:** While installing the main `victory` or `echarts` packages (as mentioned above) covers the most critical peer dependencies, `@patternfly/react-charts` might list other specific `victory-*` or `echarts` related packages as optional peer dependencies in its `package.json`. If you encounter issues with highly specific chart features or components after installing the main libraries, consult the `@patternfly/react-charts` `package.json` (inside `node_modules`) or its README for any additional, less common peer dependencies that might need explicit installation.
 *   **Import Paths:** 
     *   Based on the underlying charting library a component uses, the import path may need to be specific:
         *   For charts based on **Victory** (like `ChartDonut`), use: `import { ChartDonut } from '@patternfly/react-charts/victory';`
