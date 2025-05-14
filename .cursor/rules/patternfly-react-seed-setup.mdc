@@ -3,141 +3,69 @@ description: Vibe code a PatternFly UI
 globs: 
 alwaysApply: false
 ---
-# Setting up a PatternFly Application using patternfly-react-seed
+# patternfly-react-seed Setup
 
-This guide outlines the steps to clone the [patternfly-react-seed](mdc:https:/github.com/patternfly/patternfly-react-seed) repository and use it as a starting point for building a new PatternFly application.
+Guide for using [patternfly-react-seed](mdc:https:/github.com/patternfly/patternfly-react-seed) to start PatternFly apps. Scaffolds with layout, routing, build/test tools.
 
-The `patternfly-react-seed` project provides a scaffold for web apps, giving developers a quick start with PatternFly. It includes an application layout with a header and sidebar, routing, a build pipeline, a test suite, and code quality tools.
+## Prerequisites
 
-## Prerequisites: Environment Setup
-
-Before you begin, ensure your development environment is correctly configured:
-
-1.  **Node.js and npm:** Both Node.js and npm (Node Package Manager) must be installed and accessible in your system's PATH. 
-    *   You can check their versions by running: `node --version && npm --version`
-    *   If they are not found, download and install Node.js from [https://nodejs.org/](mdc:https:/nodejs.org). npm is included with Node.js.
-2.  **Using nvm (Optional but Recommended):** If you use Node Version Manager (nvm):
-    *   Ensure `nvm` itself is loaded in your shell. If `nvm` command is not found, you might need to add sourcing lines to your shell configuration file (e.g., `~/.zshrc`, `~/.bash_profile`, `~/.bashrc`) and then reload the configuration (e.g., `source ~/.zshrc`). Example lines for `.zshrc` or `.bashrc`:
-        ```bash
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-        ```
-    *   Install a Node.js version if needed: `nvm install node` (for latest) or `nvm install <version>`.
-    *   Ensure you are using a Node.js version: `nvm use node` or `nvm use <version>`.
+*   **Node.js & npm:** Ensure installed and in PATH (`node --version && npm --version`). Install from [https://nodejs.org/](mdc:https:/nodejs.org).
+*   **nvm (Optional):** If used, ensure loaded and Node version active (`nvm use node`).
 
 ## Quick Start
 
-1.  **Clone the repository:** The AI assistant can run this for you.
-    ```bash
-    git clone https://github.com/patternfly/patternfly-react-seed
-    ```
+1.  **Clone:** `git clone https://github.com/patternfly/patternfly-react-seed` (AI can run)
+2.  **Navigate:** `cd patternfly-react-seed` (Run npm commands here)
+3.  **Install:** `npm install` (AI can run after Node/npm check)
+4.  **Start Dev Server:** `npm run start:dev`. **User recommended**: Run in separate terminal. Server usually at `http://localhost:9000`. More info: [README.md](mdc:README.md).
 
-2.  **Navigate into the project directory:** The AI assistant will ensure its commands run in this directory. All `npm install` and `npm run` commands must be executed from within the `patternfly-react-seed` project directory.
-    ```bash
-    cd patternfly-react-seed
-    ```
+## Indexing Resources (for IDE/Awareness)
 
-3.  **Install dependencies:** The AI assistant can run this for you after confirming Node.js/npm are available.
-    ```bash
-    npm install
-    ```
+*   PatternFly Docs: [https://www.patternfly.org/](mdc:https:/www.patternfly.org)
+*   PatternFly Core (HTML/CSS): `https://github.com/patternfly/patternfly`
+*   PatternFly React Code: `https://github.com/patternfly/patternfly-react`
+*   React Charts README: [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme)
+*   Local Docs: [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt), [patternfly-react-component-groups.txt](mdc:patternfly-react-component-groups.txt)
 
-4.  **Start the development server (User Action Recommended):**
-    *   **Recommended:** It is best for the **user to run the development server in a separate, dedicated terminal window or tab.**
-        1.  Open a new terminal.
-        2.  Navigate to the `patternfly-react-seed` project directory (e.g., `cd path/to/patternfly-react-seed`).
-        3.  Run the command: `npm run start:dev`
-    *   This approach allows you to see the live server output (compilation status, errors, etc.) directly, which is crucial for troubleshooting, without blocking the AI assistant's terminal access.
-    *   The server typically runs on `http://localhost:9000` (this can be confirmed in `webpack.dev.js`).
-    *   If the AI assistant needs to (re)start the server (e.g., after installing packages or making configuration changes), it will still propose the `npm run start:dev` command. However, the user should be aware that the AI running this command might obscure direct error visibility compared to running it in their own terminal.
+## PatternFly Dev Guidelines
 
-This will start the development server, and you can begin building your application. Refer to the [README.md](mdc:README.md) in the cloned repository for more detailed information on development scripts, configuration, and available features.
+*   **Class Naming:** Use `pf-v6-` prefixed classes. Avoid older (e.g., `pf-v5-`).
+*   **Styling:** Prefer PatternFly utility classes over custom CSS. See [PatternFly Docs](mdc:https:/www.patternfly.org).
+*   **Text Components (PF6+):** Use `<Content component="tag">...</Content>` instead of older `Text`/`TextContent`.
+*   **Troubleshooting/Examples:** Consult docs on [patternfly.org](mdc:https:/www.patternfly.org) ("View Code" sections) & `*.tsx`/`*.jsx` examples in PF repos (e.g., `patternfly-react/.../examples/`). Provide links/snippets to AI.
+*   **Dropdown Positioning (Clipping):** Use `popperProps` (e.g., `{{ position: 'right', enableFlip: true }}`). For parent clipping, `popperProps={{ appendTo: () => document.body }}`. See [Dropdown docs](mdc:https:/www.patternfly.org/components/menus/dropdown#dropdownpopperprops).
+*   **Icons (`@patternfly/react-icons`):** Wrap with `Icon` from `@patternfly/react-core` (e.g., `<Icon size="md"><YourIcon /></Icon>`) for consistent styling. See [Icon docs](mdc:https:/www.patternfly.org/components/icon).
+*   **Table (Composable):**
+    *   Use the declarative composable `Table` from `@patternfly/react-table`. Define structure with `<Thead>, <Tbody>, <Tr>, <Th>, <Td>`. Sorting is configured via the `sort` prop on the relevant `<Th>`.
+    *   For selectable rows, render `Checkbox` components in the first `Th` (for select-all) and first `Td` of each data row. Manage selection state (e.g., a `Set` of selected IDs) and connect `onChange` handlers. The header checkbox should use `isChecked={null}` for indeterminate state.
+*   **Dropdown (Kebab with `MenuToggle`):** For Kebab-style dropdowns, use `Dropdown`. Its `toggle` prop should render a `MenuToggle` (often with `variant="plain"` and an icon like `EllipsisVIcon`). Items (`DropdownItem`) and `Divider`s go inside a `DropdownList`. `popperProps` control positioning.
+*   **Toolbar with Filters & Bulk Actions:**
+    *   Use the `Toolbar` component with `ToolbarContent`.
+    *   Place filter controls (e.g., `SearchInput` for text, `Select` for categories) inside `ToolbarFilter` components. `ToolbarFilter`'s `labels` prop displays active filters as chips/labels, and `deleteLabel` handles their removal.
+    *   Wrap groups of filters in `ToolbarToggleGroup` for responsive collapsing.
+    *   The main `Toolbar` component's `clearAllFilters` prop and `clearFiltersButtonText` prop manage the "Clear all filters" functionality. Add `collapseListedFiltersBreakpoint` for responsive chip display.
+    *   **For bulk selection UI (e.g., "X selected", actions dropdown):** If available, use specialized components like a `BulkSelect` component (potentially from `@patternfly/react-core` or a component group library like `patternfly-react-component-groups.txt` might reference). This is preferred over manually constructing this UI with `ToolbarItem` and `Dropdown`. If manual, conditionally render a `ToolbarGroup` with items for selected count and a `Dropdown` for bulk actions when items are selected.
+*   **Page Layout (`PageSection`):**
+    *   Structure page content using `PageSection` components. A common layout is a `PageSection` for the main `Title`, followed by another `PageSection` for primary content.
+    *   Use `variant` (e.g., `"default"`, `"secondary"`) and `padding` (e.g., `{{ default: 'padding' }}`) props.
+    *   `hasBodyWrapper={true}` on a `PageSection` wraps children in a `div` with class `pf-vX-c-page__main-body` for standard body content padding.
+*   **Component Layout Order:** A common page structure is `React.Fragment` containing:
+    1.  `PageSection` for the main `Title`.
+    2.  `PageSection` for primary content like `Toolbar` and `Table`.
+*   **Documentation & Examples:** PatternFly component APIs vary by version. **Crucial: Always consult the official PatternFly documentation for your project's specific package versions or relevant local documentation (like `patternfly-react-component-groups.txt`).** Providing the AI with working code snippets or links to *versioned* docs is highly effective.
 
-## Indexing PatternFly Documentation and Code
+## PatternFly Charts (`@patternfly/react-charts`)
 
-To have easy access to the official PatternFly documentation and codebase within your IDE, you should index or be aware of the following resources:
+*   **Install:** `npm install @patternfly/react-charts victory` (for Victory-based, e.g., `ChartDonut`) OR `npm install @patternfly/react-charts echarts` (for ECharts).
+*   **Peer Dependencies:** Main `victory`/`echarts` usually suffice. For issues, check `@patternfly/react-charts` `package.json`/README for others.
+*   **Imports:** Specific paths: `@patternfly/react-charts/victory` or `@patternfly/react-charts/echarts`. If "module not found", reinstall (clear `node_modules`/`package-lock.json`, `npm install`).
+*   **Docs:** See [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) (link in Indexing section).
 
-1.  **PatternFly Official Documentation:**
-    *   Use your IDE's features to add a new documentation source.
-    *   Provide the URL: `https://www.patternfly.org/`
+## PatternFly Chatbot (`@patternfly/chatbot`)
 
-2.  **PatternFly Core Code (HTML/CSS):**
-    *   Use your IDE's features to index a Git repository.
-    *   Provide the URL: `https://github.com/patternfly/patternfly`
-
-3.  **PatternFly React Code:**
-    *   Use your IDE's features to index a Git repository.
-    *   Provide the URL: `https://github.com/patternfly/patternfly-react`
-
-4.  **PatternFly React Charts Documentation:**
-    *   For specific guidance on using PatternFly charts, refer to the official `@patternfly/react-charts` README: [https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) (See also "PatternFly Charts Implementation" below).
-
-5.  **Additional Local Documentation:**
-    *   For additional context on PatternFly Chatbot, also reference the local file: [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) (see Chatbot Implementation section below for more details).
-    *   For information on PatternFly React Component Groups, reference the local file: [patternfly-react-component-groups.txt](mdc:patternfly-react-component-groups.txt)
-
-## General PatternFly Development Guidelines
-
-When building applications with PatternFly, keep the following in mind:
-
-*   **Class Naming:** Always use current PatternFly class names. Valid class names start with `pf-v6-`. Avoid using older class names, such as those prefixed with `pf-v5-`.
-*   **Styling:** Prefer PatternFly utility classes for custom styling needs. Avoid writing custom CSS whenever possible. PatternFly provides a rich set of utility classes for common styling adjustments (spacing, typography, flexbox, etc.). Refer to the PatternFly documentation for available utility classes.
-*   **Text Components (PatternFly 6+):** The `Text`, `TextContent`, and `TextVariants` components from earlier PatternFly versions are generally replaced by the more versatile `Content` component. Use `<Content component="p">...</Content>` for paragraphs, `<Content component="small">...</Content>` for small text, etc., or embed standard HTML tags within `<Content>`.
-*   **Troubleshooting & Sourcing Example Code:**
-    *   When component imports are failing, components are not behaving as expected, or when starting to build a new UI feature, consult the official PatternFly documentation.
-    *   **Crucially, examine the "View Code" or example sections on the relevant component/demo pages on [patternfly.org](mdc:https:/www.patternfly.org).**
-    *   **Additionally, a great starting point is to look for `*.tsx` (or `*.jsx`) example or demo code directly within the source repositories** of PatternFly (e.g., in `patternfly/patternfly-react` under paths like `packages/react-core/src/components/**/examples/`) or related seed projects. This can provide well-structured, working examples.
-    *   Providing these code snippets or direct documentation/repository links to the AI assistant can greatly expedite troubleshooting and development.
-    *   For chart-specific issues, the [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) and the "PatternFly Charts Implementation" guidelines below are key resources.
-*   **Dropdown Positioning (Clipping Issues):** If a `Dropdown` menu is clipped or not appearing in the correct place, use the `popperProps` prop on the `Dropdown` component.
-    *   Set `popperProps={{ position: 'right', enableFlip: true }}` (or other positions like `'left'`, `'auto'`) to control the menu's alignment and allow it to flip if needed.
-    *   For more complex clipping issues caused by parent containers, `popperProps={{ appendTo: () => document.body }}` can append the menu to the document body, taking it out of the restrictive parent's stacking context.
-    *   Refer to the [PatternFly Dropdown documentation (PopperProps section)](mdc:https:/www.patternfly.org/components/menus/dropdown#dropdownpopperprops) for more details.
-*   **Using Icons from `@patternfly/react-icons`:** When using an icon from `@patternfly/react-icons` (e.g., `CubesIcon`, `EllipsisVIcon`), it's best practice to wrap it with the PatternFly `Icon` component (`import { Icon } from '@patternfly/react-core';`). This allows you to control the icon's size, color (via status), and other properties consistently with the PatternFly design system.
-    *   Example: `<Icon size="md" status="info"><YourImportedIcon /></Icon>`
-    *   Refer to the [PatternFly Icon component documentation](mdc:https:/www.patternfly.org/components/icon) for available props like `size`, `status`, `isInlined`, etc.
-
-## PatternFly Charts Implementation
-
-When working with `@patternfly/react-charts`:
-
-*   **Package Installation & Core Dependencies:**
-    *   Install `@patternfly/react-charts`: `npm install @patternfly/react-charts`
-    *   **Crucially, you must also install the underlying charting library you intend to use.**
-        *   For **Victory-based charts** (e.g., `ChartDonut`, `ChartLine`), install the `victory` package:
-            ```bash
-            npm install victory
-            ```
-            (This package bundles common Victory components like `victory-core`, `victory-pie`, `victory-chart`, etc.)
-        *   For **ECharts-based charts**, install the `echarts` package:
-            ```bash
-            npm install echarts
-            ```
-    *   Installing these alongside `@patternfly/react-charts` (e.g., `npm install @patternfly/react-charts victory`) helps prevent common runtime errors due to missing peer dependencies.
-*   **Peer Dependencies:** While installing the main `victory` or `echarts` packages (as mentioned above) covers the most critical peer dependencies, `@patternfly/react-charts` might list other specific `victory-*` or `echarts` related packages as optional peer dependencies in its `package.json`. If you encounter issues with highly specific chart features or components after installing the main libraries, consult the `@patternfly/react-charts` `package.json` (inside `node_modules`) or its README for any additional, less common peer dependencies that might need explicit installation.
-*   **Import Paths:** 
-    *   Based on the underlying charting library a component uses, the import path may need to be specific:
-        *   For charts based on **Victory** (like `ChartDonut`), use: `import { ChartDonut } from '@patternfly/react-charts/victory';`
-        *   For charts based on **ECharts**, use: `import { SomeEChartComponent } from '@patternfly/react-charts/echarts';`
-    *   If a "module not found" error occurs for `@patternfly/react-charts` itself, ensure the package is correctly installed and `node_modules` is not corrupted (consider deleting `node_modules`, `package-lock.json`, and running `npm install` again).
-*   **Documentation:** The primary documentation is the [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme).
-
-## PatternFly Chatbot Implementation
-
-When implementing the PatternFly Chatbot feature:
-
-*   **Primary Context:** The file [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) should be considered the primary source of information for understanding the chatbot's internal structure, available components (e.g., `Chatbot.tsx`, `ChatMessage.tsx`), and how they are organized.
-*   **Package Reference:** Based on the context from `patternfly-chatbot.txt`, assume the relevant NPM package for the chatbot is `@patternfly/chatbot`. 
-    *   Installation: `npm install @patternfly/chatbot`
-*   **Import Paths & Demo Code:** 
-    *   Many specific chatbot sub-components (e.g., `ChatbotContent`, `MessageBar`, `Message`) are often imported from a **dynamic path** like `'@patternfly/chatbot/dist/dynamic/...'`. 
-    *   **Crucial Tip:** When implementing or troubleshooting the chatbot, refer to the official PatternFly demo pages. If possible, **provide the AI assistant with the relevant demo source code snippet** for the specific feature or layout you are trying to achieve. This is the most reliable way to ensure correct component usage, props, and import paths.
-*   **CSS Styling:** 
-    *   Ensure the chatbot's CSS is imported, typically: `import '@patternfly/chatbot/dist/css/main.css';`
-    *   The path to this CSS directory (e.g., `node_modules/@patternfly/chatbot/dist/css`) may need to be added to `stylePaths.js` for Webpack to process it correctly.
-*   **Inspiration and Structure (from Demos):**
-    *   For a **default chatbot** (often in an overlay or modal), refer to the structure and components used in the [Basic Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot).
-    *   For an **embedded chatbot** (integrated directly into a page section), refer to the structure and components used in the [Embedded Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot).
-    *   In general, the [Chatbot Demos Overview](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo) is a good resource for various chatbot patterns and features.
-*   This guidance (especially regarding package name, primary context file, and reliance on demo code for imports) supersedes other general references if there are discrepancies.
+*   **Primary Context:** [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) for structure, components.
+*   **Package:** `@patternfly/chatbot`. Install: `npm install @patternfly/chatbot`.
+*   **Imports/Demo Code:** Sub-components often from `'@patternfly/chatbot/dist/dynamic/...'`. **Crucial:** Refer to PF demo pages & provide AI with demo source snippets.
+*   **CSS:** `import '@patternfly/chatbot/dist/css/main.css';`. May need to add path to `stylePaths.js` for Webpack.
+*   **Demo Structures:** [Basic Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot), [Embedded Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot), [Chatbot Demos Overview](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo).
+*   **Note:** This chatbot guidance (package, context file, demo reliance) takes precedence.
