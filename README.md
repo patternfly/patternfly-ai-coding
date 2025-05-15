@@ -23,7 +23,7 @@ The primary aim is to provide a streamlined, consistent, and AI-enhanced startin
 
 2.  **Clone This Repository:**
     ```bash
-    git clone https://github.com/nicolethoen/patternfly-cursor-setup.git # Replace with your repo URL
+    git clone https://github.com/nicolethoen/patternfly-cursor-setup.git
     cd patternfly-cursor-setup
     ```
 
