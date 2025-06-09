@@ -6,7 +6,8 @@ Essential rules for structuring PatternFly components and organizing component h
 - [**PatternFly Guidelines**](./README.md) - Core development principles
 - [**Styling Rules**](./styling-standards.md) - CSS and styling approaches
 - [**Layout Rules**](../components/layout/README.md) - Page structure patterns
-- [**Data Display Rules**](../components/data-display/README.md) - Table and list patterns
+- [**Table Component Rules**](../components/data-display/table.md) - Table usage and best practices
+- [**Data View Component Rules**](../components/data-display/README.md) - Data view usage and best practices
 
 ## Component Composition Rules
 

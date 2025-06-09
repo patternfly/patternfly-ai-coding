@@ -19,6 +19,14 @@ Guide for using [patternfly-react-seed](mdc:https:/github.com/patternfly/pattern
 3.  **Install:** `npm install` (AI can run after Node/npm check)
 4.  **Start Dev Server:** `npm run start:dev`. **User recommended**: Run in separate terminal. Server usually at `http://localhost:9000`. More info: [README.md](mdc:README.md).
 
+## Advanced: Context7 MCP Server Setup
+
+For advanced documentation and code search in Cursor, set up Context7 as an MCP server:
+- In Cursor, open the MCP server settings.
+- Add Context7 as a documentation/code search provider.
+- This enables AI-powered, up-to-date PatternFly and open source documentation search directly in your IDE.
+- For more, see the [Context7 documentation](mdc:https:/context7.com/docs) or Cursor's MCP server setup guide.
+
 ## Indexing Resources (for IDE/Awareness)
 
 *   PatternFly Docs: [https://www.patternfly.org/](mdc:https:/www.patternfly.org)
@@ -27,45 +35,16 @@ Guide for using [patternfly-react-seed](mdc:https:/github.com/patternfly/pattern
 *   React Charts README: [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme)
 *   Local Docs: [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt), [patternfly-react-component-groups.txt](mdc:patternfly-react-component-groups.txt)
 
-## PatternFly Dev Guidelines
+## PatternFly Development Guidelines
 
-*   **Class Naming:** Use `pf-v6-` prefixed classes. Avoid older (e.g., `pf-v5-`).
-*   **Styling:** Prefer PatternFly utility classes over custom CSS. See [PatternFly Docs](mdc:https:/www.patternfly.org).
-*   **Text Components (PF6+):** Use `<Content component="tag">...</Content>` instead of older `Text`/`TextContent`.
-*   **Troubleshooting/Examples:** Consult docs on [patternfly.org](mdc:https:/www.patternfly.org) ("View Code" sections) & `*.tsx`/`*.jsx` examples in PF repos (e.g., `patternfly-react/.../examples/`). Provide links/snippets to AI.
-*   **Dropdown Positioning (Clipping):** Use `popperProps` (e.g., `{{ position: 'right', enableFlip: true }}`). For parent clipping, `popperProps={{ appendTo: () => document.body }}`. See [Dropdown docs](mdc:https:/www.patternfly.org/components/menus/dropdown#dropdownpopperprops).
-*   **Icons (`@patternfly/react-icons`):** Wrap with `Icon` from `@patternfly/react-core` (e.g., `<Icon size="md"><YourIcon /></Icon>`) for consistent styling. See [Icon docs](mdc:https:/www.patternfly.org/components/icon).
-*   **Table (Composable):**
-    *   Use the declarative composable `Table` from `@patternfly/react-table`. Define structure with `<Thead>, <Tbody>, <Tr>, <Th>, <Td>`. Sorting is configured via the `sort` prop on the relevant `<Th>`.
-    *   For selectable rows, render `Checkbox` components in the first `Th` (for select-all) and first `Td` of each data row. Manage selection state (e.g., a `Set` of selected IDs) and connect `onChange` handlers. The header checkbox should use `isChecked={null}` for indeterminate state.
-*   **Dropdown (Kebab with `MenuToggle`):** For Kebab-style dropdowns, use `Dropdown`. Its `toggle` prop should render a `MenuToggle` (often with `variant="plain"` and an icon like `EllipsisVIcon`). Items (`DropdownItem`) and `Divider`s go inside a `DropdownList`. `popperProps` control positioning.
-*   **Toolbar with Filters & Bulk Actions:**
-    *   Use the `Toolbar` component with `ToolbarContent`.
-    *   Place filter controls (e.g., `SearchInput` for text, `Select` for categories) inside `ToolbarFilter` components. `ToolbarFilter`'s `labels` prop displays active filters as chips/labels, and `deleteLabel` handles their removal.
-    *   Wrap groups of filters in `ToolbarToggleGroup` for responsive collapsing.
-    *   The main `Toolbar` component's `clearAllFilters` prop and `clearFiltersButtonText` prop manage the "Clear all filters" functionality. Add `collapseListedFiltersBreakpoint` for responsive chip display.
-    *   **For bulk selection UI (e.g., "X selected", actions dropdown):** If available, use specialized components like a `BulkSelect` component (potentially from `@patternfly/react-core` or a component group library like `patternfly-react-component-groups.txt` might reference). This is preferred over manually constructing this UI with `ToolbarItem` and `Dropdown`. If manual, conditionally render a `ToolbarGroup` with items for selected count and a `Dropdown` for bulk actions when items are selected.
-*   **Page Layout (`PageSection`):**
-    *   Structure page content using `PageSection` components. A common layout is a `PageSection` for the main `Title`, followed by another `PageSection` for primary content.
-    *   Use `variant` (e.g., `"default"`, `"secondary"`) and `padding` (e.g., `{{ default: 'padding' }}`) props.
-    *   `hasBodyWrapper={true}` on a `PageSection` wraps children in a `div` with class `pf-vX-c-page__main-body` for standard body content padding.
-*   **Component Layout Order:** A common page structure is `React.Fragment` containing:
-    1.  `PageSection` for the main `Title`.
-    2.  `PageSection` for primary content like `Toolbar` and `Table`.
-*   **Documentation & Examples:** PatternFly component APIs vary by version. **Crucial: Always consult the official PatternFly documentation for your project's specific package versions or relevant local documentation (like `patternfly-react-component-groups.txt`).** Providing the AI with working code snippets or links to *versioned* docs is highly effective.
+For all PatternFly development guidelines, consult this project's documentation in the `documentation/` directory. This includes:
+- Component architecture and usage rules
+- Styling and class naming conventions
+- Data display, table, and data view best practices
+- Integration, troubleshooting, and advanced usage
 
-## PatternFly Charts (`@patternfly/react-charts`)
+> **Always reference the local documentation for the most accurate and project-specific guidance.**
 
-*   **Install:** `npm install @patternfly/react-charts victory` (for Victory-based, e.g., `ChartDonut`) OR `npm install @patternfly/react-charts echarts` (for ECharts).
-*   **Peer Dependencies:** Main `victory`/`echarts` usually suffice. For issues, check `@patternfly/react-charts` `package.json`/README for others.
-*   **Imports:** Specific paths: `@patternfly/react-charts/victory` or `@patternfly/react-charts/echarts`. If "module not found", reinstall (clear `node_modules`/`package-lock.json`, `npm install`).
-*   **Docs:** See [`@patternfly/react-charts` README](mdc:https:/github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme) (link in Indexing section).
+> **Note on Utility Classes:**
+> Avoid over-relying on utility classes to style components. Prefer using the component's own props and API for layout and appearance, as these are designed for recommended use cases. Use utility classes only when necessary, and add a comment explaining why the utility class is required. This approach helps ensure your code remains maintainable and aligned with future PatternFly updates.
 
-## PatternFly Chatbot (`@patternfly/chatbot`)
-
-*   **Primary Context:** [patternfly-chatbot.txt](mdc:patternfly-chatbot.txt) for structure, components.
-*   **Package:** `@patternfly/chatbot`. Install: `npm install @patternfly/chatbot`.
-*   **Imports/Demo Code:** Sub-components often from `'@patternfly/chatbot/dist/dynamic/...'`. **Crucial:** Refer to PF demo pages & provide AI with demo source snippets.
-*   **CSS:** `import '@patternfly/chatbot/dist/css/main.css';`. May need to add path to `stylePaths.js` for Webpack.
-*   **Demo Structures:** [Basic Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot), [Embedded Chatbot Demo](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot), [Chatbot Demos Overview](mdc:https:/www.patternfly.org/patternfly-ai/chatbot/overview/demo).
-*   **Note:** This chatbot guidance (package, context file, demo reliance) takes precedence.

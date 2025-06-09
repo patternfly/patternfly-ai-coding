@@ -1,72 +1,11 @@
 # Data Display Rules
 
-Essential rules for PatternFly data display components including tables, lists, and data presentation.
+Essential rules for PatternFly data display components including lists, data presentation, and data view patterns.
 
 ## Related Files
 - [**Component Architecture**](../../guidelines/component-architecture.md) - Data component structure rules
 - [**Layout Rules**](../layout/README.md) - Page structure patterns
-
-## Table Component Rules
-
-### Required Table Structure
-- ✅ **Use composable Table components** - `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`
-- ✅ **Import from @patternfly/react-table** - Not @patternfly/react-core
-- ❌ **Don't create custom table components** - Use PatternFly's composable approach
-
-```jsx
-// ✅ Correct table structure
-import { Table, Thead, Tbody, Tr, Th, Td } from '@patternfly/react-table';
-
-<Table>
-  <Thead>
-    <Tr>
-      <Th>Name</Th>
-      <Th>Email</Th>
-    </Tr>
-  </Thead>
-  <Tbody>
-    {data.map(item => (
-      <Tr key={item.id}>
-        <Td>{item.name}</Td>
-        <Td>{item.email}</Td>
-      </Tr>
-    ))}
-  </Tbody>
-</Table>
-```
-
-### Sorting Rules
-- ✅ **Use sort prop on Th components** - Configure sorting via the `sort` prop
-- ✅ **Manage sort state with useState** - Track sortBy state
-- ✅ **Use useMemo for sorted data** - Performance optimization
-
-```jsx
-// ✅ Required sorting pattern
-const [sortBy, setSortBy] = useState({});
-
-<Th sort={{ sortBy, onSort: handleSort, columnIndex: 0 }}>
-  Name
-</Th>
-```
-
-### Selection Rules
-- ✅ **Use Set for selection state** - More efficient than arrays
-- ✅ **Handle indeterminate state** - For "select all" checkbox
-- ✅ **Use proper ARIA labels** - For accessibility
-
-```jsx
-// ✅ Required selection pattern
-const [selectedItems, setSelectedItems] = useState(new Set());
-
-const isAllSelected = selectedItems.size === data.length && data.length > 0;
-const isPartiallySelected = selectedItems.size > 0 && selectedItems.size < data.length;
-
-<Checkbox
-  isChecked={isAllSelected ? true : isPartiallySelected ? null : false}
-  onChange={handleSelectAll}
-  aria-label="Select all rows"
-/>
-```
+- [**Table Documentation**](./table.md) - Table component rules and best practices
 
 ## Dropdown Action Rules
 
@@ -215,3 +154,128 @@ import { Pagination } from '@patternfly/react-core';
 - **[Table Component](https://www.patternfly.org/components/table)** - Official table documentation
 - **[Toolbar Component](https://www.patternfly.org/components/toolbar)** - Toolbar with filters
 - **[Dropdown Component](https://www.patternfly.org/components/menus/dropdown)** - Dropdown positioning
+
+## Data View Component Rules
+
+PatternFly Data View provides a standardized way to present and interact with tabular or list-based data, following PatternFly design and accessibility guidelines.
+
+### Installation
+```bash
+npm install @patternfly/react-data-view
+```
+
+### Required CSS Import
+```jsx
+import '@patternfly/react-data-view/dist/css/main.css';
+```
+
+### Import Pattern
+- ✅ **Use dynamic imports** from `/dist/dynamic/` paths
+- ❌ **Don't use standard imports**
+
+```jsx
+// ✅ Correct
+import DataView from '@patternfly/react-data-view/dist/dynamic/DataView';
+```
+
+### Basic Usage Example
+```jsx
+import DataView from '@patternfly/react-data-view/dist/dynamic/DataView';
+
+<DataView
+  data={data}
+  columns={columns}
+  onRowClick={handleRowClick}
+/>
+```
+
+### Component API
+- Use PatternFly naming conventions for props (e.g., `variant`, `onClick`)
+- Extend PatternFly types when possible
+- Document all props and usage examples
+- Avoid unnecessary external dependencies
+
+#### Example API Extension
+```ts
+// when possible, extend available PatternFly types
+export interface DataViewProps extends TableProps {
+  customLabel?: string;
+}
+
+export const DataView: React.FunctionComponent<DataViewProps> = ({ customLabel, ...props }) => ( /* ... */ );
+```
+
+### Directory Structure
+```
+src
+|- DataView
+   |- index.ts
+   |- DataView.tsx
+```
+
+### OUIA ID Convention
+For testing, use the component name as the default OUIA ID, and for subcomponents, use `ComponentName-element-specification`.
+```ts
+ouiaId="DataView-actions-button"
+```
+
+### Testing & Linting
+- Add unit tests to `DataView.test.tsx`
+- Add Cypress component/E2E tests to `cypress/component/DataView.cy.tsx` and `cypress/e2e/DataView.spec.cy.ts`
+- Run tests and linting:
+```bash
+npm run test
+npm run lint
+```
+
+### Accessibility
+- Provide proper ARIA labels and roles
+- Ensure keyboard navigation and screen reader support
+- Run accessibility tests:
+```bash
+npm run build:docs
+npm run serve:docs
+npm run test:a11y
+npm run serve:a11y
+```
+
+### Documentation Example (Markdown)
+```md
+---
+section: extensions
+subsection: Data view
+id: DataView
+propComponents: ['DataView']
+sourceLink: https://github.com/patternfly/react-data-view/blob/main/packages/module/patternfly-docs/content/extensions/data-view/examples/DataView/DataView.md
+---
+
+import DataView from "@patternfly/react-data-view/dist/dynamic/DataView";
+
+## Component usage
+
+<DataView ... />
+
+### DataView component example label
+
+```js file="./DataViewExample.tsx"```
+```
+
+### References
+- [PatternFly React Data View GitHub](https://github.com/patternfly/react-data-view)
+- [PatternFly Data View NPM](https://www.npmjs.com/package/@patternfly/react-data-view)
+
+> **Note:** Always consult the latest PatternFly Data View documentation and demo source code for up-to-date usage patterns and best practices.
+
+### Real-World Example: OpenShift Console
+
+A production example of PatternFly Data View usage can be found in the OpenShift Console codebase:
+- [DataViewPodList.tsx on GitHub](https://github.com/openshift/console/blob/79d29bca8440a5ad82b5257bb0f37bc24384eb0e/frontend/public/components/data-view-poc/DataViewPodList.tsx)
+
+**Key integration patterns and best practices from this example:**
+- Integrates Data View with live Kubernetes data (pods) and application state.
+- Demonstrates how to pass dynamic data and columns to the Data View component.
+- Shows how to handle loading, error, and empty states in a real product context.
+- Illustrates the use of PatternFly composable components for custom row rendering and actions.
+- Provides a template for connecting Data View to Redux or other state management solutions.
+
+> For advanced usage, review the linked file to see how Data View is composed with other PatternFly and application-specific components.

@@ -96,11 +96,9 @@ implement this pattern with proper PatternFly components."
 
 ### Documentation Cross-References
 ```markdown
-<!-- Example cross-reference in documentation -->
-For chatbot implementation details, see:
-1. [Local Chatbot Documentation](../chatbot/README.md)
-2. [patternfly-chatbot.txt](../../patternfly-chatbot.txt) - Primary context file
-3. [Official Chatbot Demos](https://www.patternfly.org/patternfly-ai/chatbot/overview/demo)
+// Table and data view documentation are now split:
+// - Table rules: /documentation/components/data-display/table.md
+// - Data view rules: /documentation/components/data-display/README.md
 ```
 
 ## Project-Specific Patterns
