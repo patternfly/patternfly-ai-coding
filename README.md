@@ -1,56 +1,33 @@
-# PatternFly Cursor Setup
+# PatternFly AI Coding Support
 
-This repository accelerates PatternFly application development using [Cursor](https://cursor.sh/) by leveraging the `patternfly-react-seed` project, a dedicated Cursor rule, and contextual information files.
+This repository provides indexed documentation and contextual resources to support any AI model while coding with PatternFly. Its purpose is to make best practices, guidelines, and component documentation easily accessible for AI-assisted development—whether you use Cursor, Copilot, ChatGPT, or any other AI coding tool.
 
 ## Goal
 
-The primary aim is to provide a streamlined, consistent, and AI-enhanced starting point for developing PatternFly applications with Cursor, ensuring best practices are easily accessible and applicable.
+The primary aim is to offer a comprehensive, AI-friendly knowledge base and starting point for developing PatternFly applications. By indexing relevant documentation and providing context files, this repo ensures that any AI model can deliver accurate, consistent, and best-practice guidance while you code.
 
 ## Core Components
 
-*   **Cursor Rule (`.cursor/rules/patternfly-react-seed-setup.mdc`):** Guides AI and users through `patternfly-react-seed` setup, development best practices (including PatternFly Chatbot implementation), and general PatternFly UI construction.
-*   **Context Files:**
-    *   `patternfly-chatbot.txt`: Provides rich context for AI-assisted PatternFly Chatbot development.
-    *   `patternfly-react-component-groups.txt`: Offers information on PatternFly React Component Groups.
-*   Include detailed steps and considerations for implementing the PatternFly Chatbot, heavily utilizing `patternfly-chatbot.txt`.
-*   Suggest indexing relevant PatternFly documentation for enhanced AI awareness.
+The core components of this repository are the README and markdown files found throughout the project. These files provide indexed documentation, guidelines, and best practices to support AI-assisted PatternFly development, regardless of which AI coding tool you use.
 
-## Quick Start
+> **Recommendation:**
+> When using any AI coding tool, always instruct it to reference the README and markdown documentation in this repository while generating PatternFly code. This ensures the code follows best practices, guidelines, and the latest standards indexed here.
 
-1.  **Prerequisites:**
-    *   [Cursor](https://cursor.sh/) installed.
-    *   Node.js and npm installed (or `nvm` active). The Cursor rule includes environment checks.
+> **Tip:**
+> For the most up-to-date PatternFly documentation, consider using the context7 MCP server as a documentation source. It provides the latest PatternFly resources for AI-assisted coding and ensures your code leverages current APIs and best practices.
 
-2.  **Clone This Repository:**
-    ```bash
-    git clone https://github.com/nicolethoen/patternfly-cursor-setup.git
-    cd patternfly-cursor-setup
-    ```
-
-3.  **Open in Cursor:**
-    *   Open the `patternfly-cursor-setup` directory as your project in Cursor.
-
-4.  **Initiate Setup with AI:**
-    *   The AI assistant will be aware of the project's rule and context files.
-    *   **Example Prompt:** Tell the AI:
-        ```
-        "Use the 'patternfly-react-seed-setup' rule to start a new PatternFly project."
-        ```
-    *   **AI Guidance:** The AI will then guide you through:
-        *   Cloning the `patternfly-react-seed` repository.
-        *   Performing Node.js/npm environment checks.
-        *   Installing dependencies for `patternfly-react-seed`.
-        *   Starting the `patternfly-react-seed` development server (recommended in a separate terminal).
-
-5.  **Develop Your PatternFly Application:**
-    *   With `patternfly-react-seed` running, continue leveraging the AI, guided by the rule and context files, to build UI components and features.
-
-## About the `patternfly-react-seed-setup.mdc` Rule
-
-This central rule file is designed to:
-
-*   Automate and guide the initial environment and `patternfly-react-seed` project scaffolding.
-*   Provide instructions for launching the development server.
-*   Offer PatternFly development best practices (e.g., class naming, utility CSS usage).
-*   Include detailed steps and considerations for implementing the PatternFly Chatbot, heavily utilizing `patternfly-chatbot.txt`.
-*   Suggest indexing relevant PatternFly documentation for enhanced AI awareness.
+> **How to set up context7 MCP server:**
+> 1. Ensure you have Node.js v18+ and an MCP-compatible client (e.g., Cursor, VS Code with MCP extension, Windsurf, Claude Desktop).
+> 2. Add context7 as an MCP server in your client's configuration. For example, in Cursor, add this to your `~/.cursor/mcp.json`:
+>    ```json
+>    {
+>      "mcpServers": {
+>        "context7": {
+>          "command": "npx",
+>          "args": ["-y", "@upstash/context7-mcp@latest"]
+>        }
+>      }
+>    }
+>    ```
+> 3. Save and restart your client/editor.
+> 4. For more details and setup instructions for other editors, see the official guide: https://github.com/upstash/context7#installation

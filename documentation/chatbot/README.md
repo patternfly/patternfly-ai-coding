@@ -3,24 +3,28 @@
 Essential rules for PatternFly Chatbot implementation and integration patterns.
 
 ## Related Files
+
 - [**Local Resources**](../resources/local-files.md) - Reference to patternfly-chatbot.txt
 - [**Component Architecture**](../guidelines/component-architecture.md) - Component structure guidelines
 
 ## Installation Rules
 
 ### Required Installation
+
 ```bash
 # ✅ Install PatternFly Chatbot package
 npm install @patternfly/chatbot
 ```
 
 ### Required CSS Import
+
 ```jsx
 // ✅ MUST import CSS - chatbot components require specific styling
 import '@patternfly/chatbot/dist/css/main.css';
 ```
 
 ### Webpack Configuration (if needed)
+
 ```javascript
 // stylePaths.js - Add to webpack if CSS not loading
 module.exports = [
@@ -31,6 +35,7 @@ module.exports = [
 ## Import Rules
 
 ### Required Import Pattern
+
 - ✅ **Use dynamic imports** - Import from `/dist/dynamic/` paths
 - ❌ **Don't use standard imports** - May not work with current package structure
 
@@ -48,6 +53,7 @@ import { Chatbot, ChatbotContent } from '@patternfly/chatbot';
 ## Implementation Rules
 
 ### Required Component Structure
+
 - ✅ **Use standard chatbot hierarchy** - Chatbot > ChatbotContent > MessageBox + ChatbotFooter
 - ✅ **Reference official demos** - Use PatternFly demo source code as templates
 - ❌ **Don't create custom chat UI** - Use PatternFly chatbot components
@@ -70,6 +76,7 @@ import { Chatbot, ChatbotContent } from '@patternfly/chatbot';
 ```
 
 ### Message State Rules
+
 - ✅ **Use proper message roles** - 'user', 'assistant', 'system'
 - ✅ **Include timestamps** - For message ordering and display
 - ✅ **Handle loading states** - Show indicators during API calls
@@ -87,11 +94,13 @@ const createMessage = (content, role) => ({
 ```
 
 ### Demo Implementation Rules
+
 - ✅ **Study official demos** - [Basic](https://www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot) and [Embedded](https://www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot)
 - ✅ **Use demo source code** - Copy patterns from "View Code" sections
 - ✅ **Follow demo structure** - Don't deviate from proven patterns
 
 ### Integration Rules
+
 - ✅ **Use with PatternFly layout** - Integrate in PageSection, Modal, or Card
 - ✅ **Handle responsive design** - Chatbot must work on all screen sizes
 - ❌ **Don't create standalone chatbot pages** - Integrate with app layout
@@ -110,6 +119,7 @@ const createMessage = (content, role) => ({
 ## Accessibility Rules
 
 ### Required Accessibility
+
 - ✅ **Use proper ARIA labels** - For screen reader support
 - ✅ **Implement keyboard navigation** - Full keyboard accessibility
 - ✅ **Use semantic roles** - role="application", role="log"
@@ -129,6 +139,7 @@ const createMessage = (content, role) => ({
 ## Essential Do's and Don'ts
 
 ### ✅ Do's
+
 - Import CSS from `@patternfly/chatbot/dist/css/main.css`
 - Use dynamic imports for chatbot components
 - Reference official PatternFly demo pages for implementation
@@ -138,6 +149,7 @@ const createMessage = (content, role) => ({
 - Use semantic message roles (user, assistant, system)
 
 ### ❌ Don'ts
+
 - Skip CSS imports - chatbot components require specific styling
 - Ignore demo source code from PatternFly documentation
 - Create custom chat UI when PatternFly components exist
@@ -148,18 +160,22 @@ const createMessage = (content, role) => ({
 ## Common Issues
 
 ### Styling Issues
+
 - **Missing styles**: Ensure CSS is imported in main app file
 - **Webpack config**: Add CSS path to stylePaths.js if needed
 
 ### Component Issues
+
 - **Import errors**: Use dynamic import paths `/dist/dynamic/`
 - **Component not found**: Verify package is installed and paths are correct
 
 ### Performance Issues
+
 - **Long conversations**: Implement message virtualization
 - **Memory leaks**: Clean up event listeners and subscriptions
 
 ## Quick Reference
+
 - **[Chatbot Overview](https://www.patternfly.org/patternfly-ai/chatbot/overview)** - Main documentation
 - **[Basic Demo](https://www.patternfly.org/patternfly-ai/chatbot/overview/demo/basic-chatbot)** - Simple implementation
 - **[Embedded Demo](https://www.patternfly.org/patternfly-ai/chatbot/overview/demo/embedded-chatbot)** - Embedded pattern
