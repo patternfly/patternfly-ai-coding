@@ -1,5 +1,8 @@
 # PatternFly React Development Rules
 
+> **Starting a new project?**
+> For a quick start with PatternFly React, use the [patternfly/patternfly-react-seed](https://github.com/patternfly/patternfly-react-seed) app. It provides a basic build, layout, and scaffolding for new PatternFly applications, including recommended tooling and project structure.
+
 Essential rules and guidelines for AI coders working with PatternFly React applications.
 
 ## Quick Navigation
@@ -16,7 +19,8 @@ Essential rules and guidelines for AI coders working with PatternFly React appli
 
 ### 🧩 Component Rules
 - [**Layout Rules**](./components/layout/README.md) - Page structure requirements
-- [**Data Display Rules**](./components/data-display/README.md) - Table and data presentation rules
+- [**Table Component Rules**](./components/data-display/table.md) - Table usage and best practices
+- [**Data View Component Rules**](./components/data-display/README.md) - Data view usage and best practices
 
 ### 📊 Specialized Rules
 - [**Charts Rules**](./charts/README.md) - PatternFly Charts requirements

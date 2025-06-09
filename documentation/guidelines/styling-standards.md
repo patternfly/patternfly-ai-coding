@@ -55,25 +55,29 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ## Design Token Rules
 
-### Use PatternFly Tokens for Custom CSS
+### Use Semantic PatternFly Tokens for Custom CSS
+- ✅ **Use semantic tokens** (e.g., `--pf-v6-global--primary-color--light`) for custom CSS. These tokens do not end in numbers and are intended for application-level styling.
+- ❌ **Don't use base tokens** (which end in numbers, e.g., `--pf-v6-global--Color--100`) for custom CSS. Base tokens are for internal PatternFly use and may change.
+
 ```css
 .custom-component {
-  /* ✅ Correct - Use design tokens */
-  color: var(--pf-v6-global--Color--100);
+  /* ✅ Correct - Use semantic tokens */
+  color: var(--pf-v6-global--primary-color--light);
   margin: var(--pf-v6-global--spacer--md);
   
-  /* ❌ Wrong - Hardcoded values */
+  /* ❌ Wrong - Hardcoded values or base tokens */
   /* color: #333333; */
+  /* color: var(--pf-v6-global--Color--100); */
   /* margin: 16px; */
 }
 ```
 
 ### Essential Token Categories
 ```css
-/* Colors */
---pf-v6-global--Color--100
---pf-v6-global--primary-color--100
---pf-v6-global--BackgroundColor--light-100
+/* Semantic Colors */
+--pf-v6-global--primary-color--light
+--pf-v6-global--primary-color--dark
+--pf-v6-global--background-color--light
 
 /* Spacing */
 --pf-v6-global--spacer--{xs|sm|md|lg|xl}
@@ -141,16 +145,22 @@ Essential CSS and styling rules for PatternFly React applications.
 - **Browser DevTools** - Inspect applied PatternFly classes
 - **PatternFly DevTools** - Browser extension for debugging
 
+## Utility Class Usage Guidance
+
+> **Caution:** Avoid over-relying on utility classes to style components. Prefer using the component's own props and API for layout and appearance, as these are designed for recommended use cases. Use utility classes only when necessary, and add a comment explaining why the utility class is required. This approach helps ensure your code remains maintainable and aligned with future PatternFly updates.
+
 ## Essential Do's and Don'ts
 
 ### ✅ Do's
 - Use PatternFly v6 classes exclusively
-- Prefer utility classes over custom CSS
+- Prefer component props and API for styling before using utility classes
+- Use utility classes minimally, with comments explaining their necessity
 - Use PatternFly design tokens for custom styles
 - Test responsive behavior on different screen sizes
 - Follow mobile-first responsive patterns
 
 ### ❌ Don'ts
+- Over-rely on utility classes to force component appearance
 - Mix PatternFly versions
 - Override PatternFly component internals
 - Use hardcoded values instead of design tokens
