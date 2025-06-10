@@ -182,3 +182,10 @@ const LazyChart = lazy(() => import('./HeavyChart'));
 - **[PatternFly Charts README](https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme)** - Installation and usage
 - **[Victory.js Documentation](https://formidable.com/open-source/victory/)** - Chart library documentation
 - **[PatternFly Chart Guidelines](https://www.patternfly.org/charts/about)** - Design guidelines
+
+## Reference Documentation
+
+- [PatternFly Charts on PatternFly.org](https://www.patternfly.org/charts/about)
+- [PatternFly React Charts GitHub Repository](https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts)
+
+> For the most up-to-date documentation and code examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.

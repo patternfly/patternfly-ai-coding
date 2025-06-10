@@ -49,3 +49,10 @@ Each file contains:
 - **Do's and Don'ts** - Clear guidance on what to avoid
 - **Links** - References to official PatternFly documentation
 - **Quick examples** - Minimal code patterns when needed
+
+## Reference Documentation
+
+- [PatternFly.org](https://www.patternfly.org/)
+- [PatternFly React GitHub Repository](https://github.com/patternfly/patternfly-react)
+
+> For all rules and examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.
