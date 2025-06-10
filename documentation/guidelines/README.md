@@ -49,9 +49,12 @@ import { UserIcon } from '@patternfly/react-icons';
 ### Documentation Requirements
 
 1. **Check [PatternFly.org](https://www.patternfly.org/) first** - Primary source for APIs
-2. **Use "View Code" sections** - Copy working examples
-3. **Reference version-specific docs** - Match your project's PatternFly version
-4. **Provide context to AI** - Share links and code snippets when asking for help
+2. **Check the [PatternFly React GitHub repository](https://github.com/patternfly/patternfly-react)** for the latest source code, examples, and release notes
+3. **Use "View Code" sections** - Copy working examples
+4. **Reference version-specific docs** - Match your project's PatternFly version
+5. **Provide context to AI** - Share links and code snippets when asking for help
+
+> For the most up-to-date documentation, use both the official docs and the source repositories. When using AI tools, encourage them to leverage context7 to fetch the latest documentation from these sources.
 
 ### Accessibility Requirements
 

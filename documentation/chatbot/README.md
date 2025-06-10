@@ -182,3 +182,10 @@ const createMessage = (content, role) => ({
 - **[Local Documentation](../resources/local-files.md#patternfly-chatbot-txt)** - Project-specific context
 
 **Note**: This chatbot guidance takes precedence over general PatternFly patterns. Always consult the latest PatternFly Chatbot documentation and demo source code.
+
+## Reference Documentation
+
+- [PatternFly Chatbot on PatternFly.org](https://www.patternfly.org/patternfly-ai/chatbot/overview)
+- [PatternFly Chatbot GitHub Repository](https://github.com/patternfly/chatbot)
+
+> For the most up-to-date documentation and code examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.

@@ -6,6 +6,13 @@ This section covers PatternFly layout components and page structure patterns for
 
 PatternFly layout components provide the foundation for structuring application pages and organizing content. These components ensure consistent spacing, responsive behavior, and proper semantic structure across your application.
 
+## Reference Documentation
+
+- [PatternFly Layouts on PatternFly.org](https://www.patternfly.org/layouts)
+- [PatternFly React GitHub Repository](https://github.com/patternfly/patternfly-react)
+
+> For the most up-to-date documentation and code examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.
+
 ## Related Files
 
 - [**Page Sections**](./page-sections.md) - PageSection component usage and patterns
