@@ -1,7 +1,7 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+description: Enforces PatternFly Vibe coding standards and documentation best practices for all PatternFly React code.
+globs: "**/*.{js,jsx,ts,tsx,css,scss}"
+alwaysApply: true
 ---
 # PatternFly Vibe Coding Rule
 
