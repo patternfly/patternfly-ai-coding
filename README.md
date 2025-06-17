@@ -1,7 +1,7 @@
 # PatternFly AI Coding Support
 
 ## Who is this for?
-This repository is for developers and AI agents who want to build PatternFly applications using the latest best practices, with AI assistance (Cursor, Copilot, ChatGPT, etc.).
+This repository is for individuals and AI agents who want to prototype PatternFly applications using the latest best practices, with AI assistance (Cursor, Copilot, ChatGPT, etc.).
 
 ## Quick Start (TL;DR)
 1. **Clone or copy this repo (or at least the `documentation/` directory and `.cursor/rules/` files) into your project.**
@@ -9,7 +9,7 @@ This repository is for developers and AI agents who want to build PatternFly app
 3. (Optional) **Set up context7 MCP for always-up-to-date PatternFly docs.**
 
 ## Goal
-The primary aim is to offer a comprehensive, AI-friendly knowledge base and starting point for developing PatternFly applications. By indexing relevant documentation and providing context files, this repo ensures that any AI model can deliver accurate, consistent, and best-practice guidance while you code.
+The primary aim is to offer a comprehensive, AI-friendly knowledge base and starting point for prototyping PatternFly applications. By indexing relevant documentation and providing context files, this repo ensures that any AI model can deliver accurate, consistent, and best-practice guidance while you code.
 
 ## Core Components
 The core components of this repository are the README and markdown files found throughout the project. These files provide indexed documentation, guidelines, and best practices to support AI-assisted PatternFly development, regardless of which AI coding tool you use.
