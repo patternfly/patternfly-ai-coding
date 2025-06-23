@@ -2,6 +2,8 @@
 
 This section covers PatternFly layout components and page structure patterns for building consistent application layouts.
 
+> **Note:** For up-to-date code examples, this documentation now links directly to the official PatternFly documentation and the PatternFly React GitHub repository. Inline code has been replaced with links to ensure you always see the latest patterns and best practices. **All layout examples should use PatternFly React layout components (e.g., Grid, GridItem, Flex, FlexItem) instead of divs with utility classes.**
+
 ## Introduction
 
 PatternFly layout components provide the foundation for structuring application pages and organizing content. These components ensure consistent spacing, responsive behavior, and proper semantic structure across your application.
@@ -24,356 +26,106 @@ PatternFly layout components provide the foundation for structuring application 
 
 ### PageSection Component
 
-The [`PageSection`](https://www.patternfly.org/components/page/page-section) component is the primary building block for page content structure.
+The [`PageSection`](https://www.patternfly.org/components/page/page-section) component is the primary building block for page content structure. It is highly versatile and supports multiple variants, padding options, and responsive configurations.
 
-#### Basic Usage
-```jsx
-import { PageSection, Content } from '@patternfly/react-core';
+For detailed examples of all its features, refer to the official documentation.
 
-const BasicPage = () => (
-  <React.Fragment>
-    {/* Page Title Section */}
-    <PageSection variant="light">
-      <Content component="h1">Page Title</Content>
-    </PageSection>
-    
-    {/* Main Content Section */}
-    <PageSection hasBodyWrapper>
-      <Content component="p">Main page content goes here</Content>
-    </PageSection>
-  </React.Fragment>
-);
-```
-
-#### PageSection Variants
-```jsx
-// Light background for headers/titles
-<PageSection variant="light">
-  <Content component="h1">Application Title</Content>
-</PageSection>
-
-// Default background for main content
-<PageSection variant="default">
-  <MainContent />
-</PageSection>
-
-// Secondary background for supporting content
-<PageSection variant="secondary">
-  <SupportingContent />
-</PageSection>
-
-// Dark background for special sections
-<PageSection variant="dark">
-  <SpecialContent />
-</PageSection>
-```
-
-#### Padding Configuration
-```jsx
-// Standard padding
-<PageSection padding={{ default: 'padding' }}>
-  <Content>Standard padded content</Content>
-</PageSection>
-
-// No padding
-<PageSection padding={{ default: 'noPadding' }}>
-  <Content>Content with no padding</Content>
-</PageSection>
-
-// Responsive padding
-<PageSection 
-  padding={{ 
-    default: 'padding', 
-    md: 'paddingLg',
-    lg: 'paddingXl' 
-  }}
->
-  <Content>Responsive padding content</Content>
-</PageSection>
-```
-
-#### Body Wrapper
-```jsx
-// Adds pf-vX-c-page__main-body wrapper for standard content padding
-<PageSection hasBodyWrapper={true}>
-  <div className="pf-v6-u-margin-top-lg">
-    Content with body wrapper styling
-  </div>
-</PageSection>
-```
+- [**PageSection Official Docs**](https://www.patternfly.org/components/page/page-section)
+- [**PageSection Code Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/PageSection/examples)
 
 ## Common Layout Patterns
 
-### Standard Page Layout
-```jsx
-import { 
-  PageSection, 
-  Content, 
-  Toolbar, 
-  ToolbarContent 
-} from '@patternfly/react-core';
+This section describes common page layout patterns and links to their official documentation and examples.
 
-const StandardPageLayout = () => (
-  <React.Fragment>
-    {/* 1. Page Title Section */}
-    <PageSection variant="light">
-      <Content component="h1">User Management</Content>
-      <Content component="p">Manage user accounts and permissions</Content>
-    </PageSection>
-    
-    {/* 2. Toolbar Section */}
-    <PageSection padding={{ default: 'noPadding' }}>
-      <Toolbar>
-        <ToolbarContent>
-          {/* Filters, search, actions */}
-        </ToolbarContent>
-      </Toolbar>
-    </PageSection>
-    
-    {/* 3. Main Content Section */}
-    <PageSection hasBodyWrapper>
-      <UserTable />
-    </PageSection>
-  </React.Fragment>
-);
-```
+### Standard Page Layout
+A standard page layout typically consists of a page title, an optional toolbar for actions, and a main content area.
+
+- [**Page Layout Documentation**](https://www.patternfly.org/layouts/page)
+- [**Page Component Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/Page/examples)
 
 ### Dashboard Layout
-```jsx
-const DashboardLayout = () => (
-  <React.Fragment>
-    {/* Dashboard Header */}
-    <PageSection variant="light" padding={{ default: 'padding' }}>
-      <Content component="h1">Dashboard</Content>
-      <Content component="p">System overview and key metrics</Content>
-    </PageSection>
-    
-    {/* Metrics Cards */}
-    <PageSection>
-      <div className="pf-v6-l-grid pf-v6-m-gutter">
-        <div className="pf-v6-l-grid__item pf-v6-m-6-col pf-v6-m-3-col-on-lg">
-          <MetricCard title="Users" value="1,234" />
-        </div>
-        <div className="pf-v6-l-grid__item pf-v6-m-6-col pf-v6-m-3-col-on-lg">
-          <MetricCard title="Orders" value="5,678" />
-        </div>
-        <div className="pf-v6-l-grid__item pf-v6-m-6-col pf-v6-m-3-col-on-lg">
-          <MetricCard title="Revenue" value="$12,345" />
-        </div>
-        <div className="pf-v6-l-grid__item pf-v6-m-6-col pf-v6-m-3-col-on-lg">
-          <MetricCard title="Growth" value="+15%" />
-        </div>
-      </div>
-    </PageSection>
-    
-    {/* Charts and Detailed Content */}
-    <PageSection hasBodyWrapper>
-      <div className="pf-v6-l-grid pf-v6-m-gutter">
-        <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-8-col-on-lg">
-          <ChartSection />
-        </div>
-        <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-4-col-on-lg">
-          <ActivityFeed />
-        </div>
-      </div>
-    </PageSection>
-  </React.Fragment>
-);
-```
+A dashboard is used to display a high-level overview of system status and key metrics using a grid of cards and charts.
+
+- [**Dashboard Layout Documentation**](https://www.patternfly.org/layouts/dashboard)
+- [**Grid Layout Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/layouts/Grid/examples)
 
 ### Form Layout
-```jsx
-const FormPageLayout = () => (
-  <React.Fragment>
-    {/* Form Header */}
-    <PageSection variant="light">
-      <Content component="h1">Create User</Content>
-      <Content component="p">Add a new user to the system</Content>
-    </PageSection>
-    
-    {/* Form Content */}
-    <PageSection hasBodyWrapper>
-      <div className="pf-v6-l-grid pf-v6-m-gutter">
-        <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-8-col-on-lg pf-v6-m-6-col-on-xl">
-          <Card>
-            <CardTitle>User Information</CardTitle>
-            <CardBody>
-              <UserForm />
-            </CardBody>
-          </Card>
-        </div>
-        <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-4-col-on-lg pf-v6-m-6-col-on-xl">
-          <Card>
-            <CardTitle>Help</CardTitle>
-            <CardBody>
-              <HelpContent />
-            </CardBody>
-          </Card>
-        </div>
-      </div>
-    </PageSection>
-  </React.Fragment>
-);
-```
+Forms should be presented clearly within a card or a dedicated page section, often in a two-column layout on larger screens to separate the form from supplementary help text.
+
+- [**Form Component Documentation**](https://www.patternfly.org/components/form)
+- [**Form Code Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/Form/examples)
 
 ## Grid System Integration
 
-### Basic Grid Layout
-```jsx
-import { PageSection } from '@patternfly/react-core';
+The PatternFly `Grid` and `GridItem` components are used to create flexible, responsive layouts. For detailed examples of basic and responsive grid patterns, refer to the official documentation.
 
-const GridLayout = () => (
-  <PageSection>
-    <div className="pf-v6-l-grid pf-v6-m-gutter">
-      <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-6-col-on-md">
-        <Card>Left Content</Card>
-      </div>
-      <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-6-col-on-md">
-        <Card>Right Content</Card>
-      </div>
-    </div>
-  </PageSection>
-);
-```
-
-### Responsive Grid Patterns
-```jsx
-// Three-column responsive layout
-<div className="pf-v6-l-grid pf-v6-m-gutter">
-  <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-6-col-on-md pf-v6-m-4-col-on-lg">
-    <Card>Column 1</Card>
-  </div>
-  <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-6-col-on-md pf-v6-m-4-col-on-lg">
-    <Card>Column 2</Card>
-  </div>
-  <div className="pf-v6-l-grid__item pf-v6-m-12-col pf-v6-m-12-col-on-md pf-v6-m-4-col-on-lg">
-    <Card>Column 3</Card>
-  </div>
-</div>
-```
+- [**Grid Layout Documentation**](https://www.patternfly.org/layouts/grid)
+- [**Grid Code Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/layouts/Grid/examples)
 
 ## Responsive Design Considerations
 
-### Breakpoint-Aware Layouts
-```jsx
-const ResponsiveLayout = () => (
-  <PageSection>
-    {/* Mobile: Stack vertically, Desktop: Side by side */}
-    <div className="pf-v6-l-flex pf-v6-m-column pf-v6-m-row-on-lg pf-v6-m-gap-md">
-      <div className="pf-v6-l-flex__item pf-v6-m-flex-1">
-        <MainContent />
-      </div>
-      <div className="pf-v6-l-flex__item pf-v6-m-flex-none-on-lg" style={{ flexBasis: '300px' }}>
-        <Sidebar />
-      </div>
-    </div>
-  </PageSection>
-);
-```
+Use the `Flex` and `FlexItem` components along with breakpoint modifiers to create layouts that adapt to different screen sizes. A mobile-first approach is recommended, where the default layout is for mobile and is enhanced for larger screens.
 
-### Mobile-First Approach
-```jsx
-// Start with mobile layout, enhance for larger screens
-<PageSection>
-  <div className="pf-v6-u-display-block pf-v6-u-display-flex-on-lg">
-    <div className="pf-v6-u-flex-grow-1 pf-v6-u-margin-bottom-md pf-v6-u-margin-bottom-0-on-lg pf-v6-u-margin-right-lg-on-lg">
-      <PrimaryContent />
-    </div>
-    <div className="pf-v6-u-flex-shrink-0" style={{ width: '250px' }}>
-      <SecondaryContent />
-    </div>
-  </div>
-</PageSection>
-```
+- [**Flex Layout Documentation**](https://www.patternfly.org/layouts/flex)
+- [**Flex Code Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/layouts/Flex/examples)
+- [**Responsive Utilities Documentation**](https://www.patternfly.org/utilities/responsive)
 
 ## Accessibility Considerations
 
 ### Semantic Structure
-```jsx
-// Use proper heading hierarchy
-<PageSection variant="light">
-  <Content component="h1">Main Page Title</Content>  {/* h1 for page title */}
-</PageSection>
+Always use the correct heading hierarchy (`<h1>`, `<h2>`, `<h3>`, etc.) to structure your page content logically. Use the `component` prop on PatternFly components to render the correct HTML element.
 
-<PageSection>
-  <Content component="h2">Section Title</Content>    {/* h2 for major sections */}
-  <div>
-    <Content component="h3">Subsection</Content>     {/* h3 for subsections */}
-  </div>
-</PageSection>
+### Skip to Content and Back to Top
+For accessible and user-friendly navigation on long pages, PatternFly provides the `SkipToContent` and `BackToTop` components, which are integrated directly into the `Page` component.
+
+-   **`SkipToContent`**: Allows keyboard users to bypass navigation and jump directly to the main content area.
+-   **`BackToTop`**: Allows all users to quickly return to the top of the page after scrolling.
+
+**Best Practices**:
+- ✅ Use `SkipToContent` on every page with navigation, linking its `href` to the main content `id`.
+- ✅ Use `BackToTop` on any page that requires significant scrolling, linking `scrollableSelector` to the main content `id`.
+- ✅ Assign the `mainContainerId` on the `Page` component to ensure both helpers work correctly.
+
+```jsx
+// ✅ Correct: Use SkipToContent and BackToTop together
+import { Page, PageSection, SkipToContent, BackToTop } from '@patternfly/react-core';
+
+const AppLayout = () => {
+  const mainContentId = "main-content";
+
+  return (
+    <Page
+      mainContainerId={mainContentId}
+      skipToContent={<SkipToContent href={`#${mainContentId}`}>Skip to content</SkipToContent>}
+      backToTop={<BackToTop scrollableSelector={`#${mainContentId}`} />}
+    >
+      <PageSection>
+        {/* ... long content that requires scrolling ... */}
+      </PageSection>
+    </Page>
+  );
+};
 ```
 
-### Skip Links and Navigation
-```jsx
-// Add skip links for keyboard navigation
-<PageSection className="pf-v6-u-screen-reader">
-  <a href="#main-content" className="pf-v6-c-button pf-m-primary">
-    Skip to main content
-  </a>
-</PageSection>
-
-<PageSection id="main-content" tabIndex="-1">
-  <MainContent />
-</PageSection>
-```
+**Reference Documentation**:
+- [SkipToContent Component Docs](https://www.patternfly.org/components/skip-to-content)
+- [BackToTop Component Docs](https://www.patternfly.org/components/back-to-top)
 
 ### ARIA Landmarks
-```jsx
-// Use proper ARIA landmarks
-<PageSection component="main" aria-label="Main content">
-  <PrimaryContent />
-</PageSection>
+Use ARIA landmarks to define regions of a page like `main`, `aside`, `nav`, etc. This can be done by passing the `component` prop to `PageSection`.
 
-<PageSection component="aside" aria-label="Sidebar">
-  <SidebarContent />
-</PageSection>
-```
+- [**ARIA Landmarks in PatternFly**](https://www.patternfly.org/accessibility/aria-landmarks)
 
 ## Performance Optimization
 
-### Lazy Loading Sections
-```jsx
-import { lazy, Suspense } from 'react';
-import { Spinner } from '@patternfly/react-core';
+### Lazy Loading and Conditional Rendering
+For performance-critical applications, use standard React patterns like lazy loading and conditional rendering to defer loading of non-critical components or sections of the page.
 
-const LazySection = lazy(() => import('./HeavySection'));
-
-const OptimizedLayout = () => (
-  <React.Fragment>
-    <PageSection variant="light">
-      <Content component="h1">Page Title</Content>
-    </PageSection>
-    
-    <PageSection>
-      <Suspense fallback={<Spinner />}>
-        <LazySection />
-      </Suspense>
-    </PageSection>
-  </React.Fragment>
-);
-```
-
-### Conditional Rendering
-```jsx
-const ConditionalLayout = ({ showSidebar, isLoading }) => (
-  <PageSection>
-    <div className="pf-v6-l-flex pf-v6-m-gap-md">
-      <div className="pf-v6-l-flex__item pf-v6-m-flex-1">
-        {isLoading ? <LoadingSpinner /> : <MainContent />}
-      </div>
-      {showSidebar && (
-        <div className="pf-v6-l-flex__item pf-v6-m-flex-none">
-          <Sidebar />
-        </div>
-      )}
-    </div>
-  </PageSection>
-);
-```
+- [**React Docs: Code-Splitting and Lazy Loading**](https://react.dev/reference/react/lazy)
+- [**React Docs: Conditional Rendering**](https://react.dev/learn/conditional-rendering)
 
 ## Best Practices
 
-### Layout Do's
 - ✅ Use PageSection for all major page areas
 - ✅ Follow consistent page structure patterns
 - ✅ Implement responsive design from mobile-first
@@ -382,7 +134,6 @@ const ConditionalLayout = ({ showSidebar, isLoading }) => (
 - ✅ Test layouts across different screen sizes
 - ✅ Use hasBodyWrapper for standard content padding
 
-### Layout Don'ts
 - ❌ Skip PageSection for page structure
 - ❌ Mix layout systems inconsistently
 - ❌ Ignore responsive design requirements
@@ -393,11 +144,26 @@ const ConditionalLayout = ({ showSidebar, isLoading }) => (
 
 ## Common Layout Issues
 
-### Troubleshooting
-1. **Spacing Issues**: Use PatternFly spacing utilities instead of custom margins
-2. **Responsive Problems**: Test on actual devices, not just browser resize
-3. **Overflow Issues**: Check container widths and use proper flex/grid properties
-4. **Accessibility Violations**: Validate semantic structure and ARIA labels
-5. **Performance Problems**: Implement lazy loading for heavy sections
+For troubleshooting, see [Common Issues](../../troubleshooting/common-issues.md#layout-issues).
 
-For detailed troubleshooting, see [Common Issues](../../troubleshooting/common-issues.md#layout-issues).
+## Valid PatternFly Page Layout (v6+)
+
+A valid PatternFly v6+ application layout is built by composing the `Page`, `Masthead`, `PageSidebar`, and `PageSection` components. The `Page` component acts as the root, and other major elements like the masthead and sidebar are passed in as props.
+
+For a complete, working example of a full application layout, refer to the official PatternFly documentation.
+
+- [**Page Component Documentation & Examples**](https://www.patternfly.org/components/page)
+- [**Page Component Code Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/Page/examples)
+
+### Layout Summary Table
+
+| Layout Element | PatternFly Component(s) | Notes |
+|---------------|------------------------|-------|
+| Root          | `Page`                 | Use `masthead`, `sidebar`, `breadcrumb` props |
+| Masthead      | `Masthead`, `MastheadMain`, `MastheadBrand`, etc. | Compose for logo, toggles, user menu |
+| Sidebar       | `PageSidebar`, `PageSidebarBody`, `Nav` | Use for navigation |
+| Main Content  | `PageSection`, `Title`, `Content` | Use for each page/view |
+| Breadcrumbs   | `Breadcrumb`           | Pass as `breadcrumb` prop to `Page` |
+| Page Header   | *No `PageHeader`*      | Use `PageSection` + `Title` instead |
+
+> **Note:** `PageHeader` is not a PatternFly component in v6+. Use `PageSection`, `Title`, and layout components instead.

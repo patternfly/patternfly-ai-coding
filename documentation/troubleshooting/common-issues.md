@@ -415,15 +415,12 @@ Module not found: Can't resolve '@patternfly/chatbot/dist/dynamic/Chatbot'
 
 2. **Use virtualization**:
    ```jsx
-   import { FixedSizeList as List } from 'react-window';
-   
-   <List
-     height={400}
-     itemCount={data.length}
-     itemSize={50}
-   >
-     {Row}
-   </List>
+   import { DndProvider, useDrag, useDrop } from 'react-dnd';
+   import { HTML5Backend } from 'react-dnd-html5-backend';
+   import { Table, Thead, Tbody, Tr, Th, Td } from '@patternfly/react-table';
+
+   const DraggableRow = ({ id, text, index, moveRow }) => {
+   // ... existing code ...
    ```
 
 3. **Optimize re-renders**:

@@ -26,6 +26,8 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ## Utility-First Rules
 
+> **No inline styles:** Use PatternFly layout and spacing utilities instead of `style` props or custom CSS for layout and spacing.
+
 ### Use PatternFly Utilities First
 ```jsx
 // ✅ Correct - Use PatternFly utilities
@@ -108,6 +110,10 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ## Component Styling Rules
 
+> **No emojis or raw icons:** Always use PatternFly's React icon components (from `@patternfly/react-icons`) for all icons, including status, trend, and navigation icons.
+> 
+> **No direct HTML headings or paragraphs:** Use PatternFly's `Title` for headings and `Content` with `component="p"` for paragraphs.
+
 ### Button Styling
 ```jsx
 // ✅ Use PatternFly variants
@@ -171,3 +177,45 @@ Essential CSS and styling rules for PatternFly React applications.
 - **[PatternFly Utilities](https://www.patternfly.org/utilities)** - Complete utility documentation
 - **[Design Tokens](https://www.patternfly.org/tokens)** - Available design tokens
 - **[Responsive Design](https://www.patternfly.org/layouts)** - Layout and responsive patterns
+
+## Do/Don't Examples
+
+### No Inline Styles
+**Do:**
+```jsx
+// Use PatternFly utility classes
+<div className="pf-v6-u-margin-md pf-v6-u-text-align-center">Content</div>
+```
+**Don't:**
+```jsx
+// Avoid style props for layout/spacing
+<div style={{ margin: 16, textAlign: 'center' }}>Content</div>
+```
+
+### No Emojis or Raw Icons
+**Do:**
+```jsx
+import ArrowUpIcon from '@patternfly/react-icons/dist/esm/icons/arrow-up-icon';
+<ArrowUpIcon title="Trend up" />
+```
+**Don't:**
+```jsx
+<span role="img" aria-label="trend up">📈</span>
+```
+
+### No Direct HTML Headings or Paragraphs
+**Do:**
+```jsx
+import { Title, Content } from '@patternfly/react-core';
+<Title headingLevel="h1">Dashboard</Title>
+<Content component="p">This is a PatternFly app.</Content>
+```
+**Don't:**
+```jsx
+<h1>Dashboard</h1>
+<p>This is a PatternFly app.</p>
+```
+
+---
+
+> **Note:** `PageHeader` is not a PatternFly component in v6+. Use `PageSection`, `Title`, and layout components instead.

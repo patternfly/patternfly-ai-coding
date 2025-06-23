@@ -62,21 +62,93 @@ const isPartiallySelected = selectedItems.size > 0 && selectedItems.size < data.
 />
 ```
 
+## Column and Header Management
+
+PatternFly provides powerful props for controlling column widths and making headers and columns "sticky" for better usability with wide or long tables.
+
+### Column Width Control
+Use the `width` modifier on the `<Th>` component to specify column widths as a percentage of the table's total width.
+
+- ✅ **Use `width(percentage)`**: Best for flexible, responsive layouts.
+- ❌ **Avoid fixed pixel widths**: Can break responsiveness.
+
+```jsx
+import { Table, Thead, Tbody, Tr, Th, Td } from '@patternfly/react-table';
+import { width } from '@patternfly/react-table';
+
+<Table>
+  <Thead>
+    <Tr>
+      <Th width={40}>User ID</Th>
+      <Th width={30}>Name</Th>
+      <Th width={30}>Email</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    {/* ... */}
+  </Tbody>
+</Table>
+```
+
+### Controlling Text and Column Width
+In addition to setting explicit widths, you can control how text behaves within cells using the `modifier` prop on `<Th>` and `<Td>` components. This influences column dimensions and text overflow.
+
+Key text modifiers include:
+-   **`truncate`**: Truncates text with an ellipsis.
+-   **`wrap`**: Forces text to wrap, which is useful for long header text.
+-   **`nowrap`**: Prevents text from wrapping.
+-   **`breakWord`**: Forces long, unbreakable strings (like URLs) to break.
+-   **`fitContent`**: Shrinks the column to fit its content.
+
+For detailed usage and code examples, see the official PatternFly documentation and the example in the PatternFly React repository.
+
+- [**Controlling Text in Tables (PatternFly Docs)**](https://www.patternfly.org/components/table/controlling-text)
+- [**TableControllingText.tsx Example on GitHub**](https://github.com/patternfly/patternfly-react/blob/main/packages/react-table/src/components/Table/examples/TableControllingText.tsx)
+
+### Sticky Headers and Columns
+For tables that scroll horizontally or vertically, you can make the header, specific columns, or the action column "sticky."
+
+-   **`isStickyHeader`**: Add this prop to the `<Table>` component to make the header row stick to the top during vertical scrolling.
+-   **`isSticky`**: Add this prop to a `<Th>` or `<Td>` component to make an entire column sticky during horizontal scrolling. This is commonly used for the first column (e.g., selection checkbox or ID), or last column (e.g. columns containing actions menus).
+
+```jsx
+// ✅ Sticky header, first column, and action column
+import { Table, Thead, Tbody, Tr, Th, Td } from '@patternfly/react-table';
+
+<Table isStickyHeader>
+  <Thead>
+    <Tr>
+      <Th isSticky>ID</Th>
+      <Th>Name</Th>
+      {/* ... more columns */}
+      <Th>Actions</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    {data.map(item => (
+      <Tr key={item.id}>
+        <Td isSticky>{item.id}</Td>
+        <Td>{item.name}</Td>
+        {/* ... more cells */}
+        <Td isSticky>
+          <ActionsDropdown />
+        </Td>
+      </Tr>
+    ))}
+  </Tbody>
+</Table>
+```
+
 ## Performance Rules
-- ✅ **Use virtualization for 1000+ rows** - react-window library
+- ✅ **Use Skeleton for loading states** - Provide visual feedback
+- ✅ **Ensure responsive behavior** - Test on multiple screen sizes
 - ✅ **Use pagination for large datasets** - Better UX than virtualization
 - ✅ **Memoize table rows** - React.memo for performance
 - ✅ **Use useCallback for handlers** - Stable references
 
 ```jsx
 // ✅ Required for large datasets
-import { FixedSizeList as List } from 'react-window';
 import { Pagination } from '@patternfly/react-core';
-
-// For 1000+ items, use virtualization
-<List height={400} itemCount={data.length} itemSize={50}>
-  {Row}
-</List>
 
 // For better UX, use pagination
 <Pagination itemCount={data.length} perPage={20} page={page} />
@@ -108,11 +180,6 @@ import { Pagination } from '@patternfly/react-core';
 // ✅ Solution: Use appendTo to prevent clipping
 <Dropdown popperProps={{ appendTo: () => document.body }}>
 ```
-
-### Performance Issues
-- **1000+ rows**: Use virtualization with react-window
-- **Large datasets**: Implement pagination
-- **Slow rendering**: Memoize components with React.memo
 
 ### Selection Issues
 - **Use Set not Array**: More efficient for selection state
