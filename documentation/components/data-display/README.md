@@ -94,20 +94,13 @@ if (!data?.length) return <EmptyState><EmptyStateHeader titleText="No data" /></
 ## Performance Rules
 
 ### Required Optimizations
-- ✅ **Use virtualization for 1000+ rows** - react-window library
 - ✅ **Use pagination for large datasets** - Better UX than virtualization
 - ✅ **Memoize table rows** - React.memo for performance
 - ✅ **Use useCallback for handlers** - Stable references
 
 ```jsx
 // ✅ Required for large datasets
-import { FixedSizeList as List } from 'react-window';
 import { Pagination } from '@patternfly/react-core';
-
-// For 1000+ items, use virtualization
-<List height={400} itemCount={data.length} itemSize={50}>
-  {Row}
-</List>
 
 // For better UX, use pagination
 <Pagination itemCount={data.length} perPage={20} page={page} />
@@ -155,127 +148,68 @@ import { Pagination } from '@patternfly/react-core';
 - **[Toolbar Component](https://www.patternfly.org/components/toolbar)** - Toolbar with filters
 - **[Dropdown Component](https://www.patternfly.org/components/menus/dropdown)** - Dropdown positioning
 
-## Data View Component Rules
+## Using the Data View Component
 
-PatternFly Data View provides a standardized way to present and interact with tabular or list-based data, following PatternFly design and accessibility guidelines.
+The `@patternfly/react-data-view` component is a powerful, opinionated tool for building consistent data-driven tables and lists. It composes standard PatternFly components like `Table`, `Toolbar`, and `Pagination` into a single, streamlined API.
 
-### Installation
-```bash
-npm install @patternfly/react-data-view
-```
+### When to Use Data View
+- ✅ **Use for standard list pages**: When you need to display a list of resources with common functionality like filtering, sorting, selection, and actions.
+- ✅ **To enforce consistency**: Use it across your application to ensure all data tables look and behave the same.
+- ❌ **Not for highly custom layouts**: If your layout deviates significantly from a standard table or list view, composing individual PatternFly components may be a better approach.
 
-### Required CSS Import
-```jsx
-import '@patternfly/react-data-view/dist/css/main.css';
-```
+## Data view documentation
+- **[Data view](https://www.patternfly.org/extensions/data-view/overview)** - Official data view documentation
+- **[Table Component](https://www.patternfly.org/extensions/data-view/table)** - Data view's table documentation and examples
+- **[Toolbar Component](https://www.patternfly.org/extensions/data-view/toolbar/)** - Data view's toolbar documentation and examples
 
-### Import Pattern
-- ✅ **Use dynamic imports** from `/dist/dynamic/` paths
-- ❌ **Don't use standard imports**
+### Required Setup
 
-```jsx
-// ✅ Correct
-import DataView from '@patternfly/react-data-view/dist/dynamic/DataView';
-```
+1.  **Installation**:
+    ```bash
+    npm install @patternfly/react-data-view
+    ```
 
-### Basic Usage Example
-```jsx
-import DataView from '@patternfly/react-data-view/dist/dynamic/DataView';
+2.  **CSS Import**:
+    ```jsx
+    // Import required CSS in your application's entrypoint
+    import '@patternfly/react-data-view/dist/css/main.css';
+    ```
 
-<DataView
-  data={data}
-  columns={columns}
-  onRowClick={handleRowClick}
-/>
-```
+3.  **Component Import**:
+    ```jsx
+    // Use dynamic imports for better performance
+    import DataView from '@patternfly/react-data-view/dist/dynamic/DataView';
+    ```
 
-### Component API
-- Use PatternFly naming conventions for props (e.g., `variant`, `onClick`)
-- Extend PatternFly types when possible
-- Document all props and usage examples
-- Avoid unnecessary external dependencies
+### Best Practices
 
-#### Example API Extension
-```ts
-// when possible, extend available PatternFly types
-export interface DataViewProps extends TableProps {
-  customLabel?: string;
-}
+- **Provide stable data and columns**: For performance, memoize the `data` and `columns` props passed to `DataView`, especially if they are derived from other state.
+    ```jsx
+    const columns = useMemo(() => [...], []);
+    const data = useMemo(() => [...], [sourceData]);
 
-export const DataView: React.FunctionComponent<DataViewProps> = ({ customLabel, ...props }) => ( /* ... */ );
-```
+    <DataView data={data} columns={columns} />
+    ```
 
-### Directory Structure
-```
-src
-|- DataView
-   |- index.ts
-   |- DataView.tsx
-```
+- **Leverage the built-in toolbar**: `DataView` includes a `Toolbar` with filtering capabilities. Provide filter configurations instead of building your own toolbar from scratch.
 
-### OUIA ID Convention
-For testing, use the component name as the default OUIA ID, and for subcomponents, use `ComponentName-element-specification`.
-```ts
-ouiaId="DataView-actions-button"
-```
-
-### Testing & Linting
-- Add unit tests to `DataView.test.tsx`
-- Add Cypress component/E2E tests to `cypress/component/DataView.cy.tsx` and `cypress/e2e/DataView.spec.cy.ts`
-- Run tests and linting:
-```bash
-npm run test
-npm run lint
-```
-
-### Accessibility
-- Provide proper ARIA labels and roles
-- Ensure keyboard navigation and screen reader support
-- Run accessibility tests:
-```bash
-npm run build:docs
-npm run serve:docs
-npm run test:a11y
-npm run serve:a11y
-```
-
-### Documentation Example (Markdown)
-```md
----
-section: extensions
-subsection: Data view
-id: DataView
-propComponents: ['DataView']
-sourceLink: https://github.com/patternfly/react-data-view/blob/main/packages/module/patternfly-docs/content/extensions/data-view/examples/DataView/DataView.md
----
-
-import DataView from "@patternfly/react-data-view/dist/dynamic/DataView";
-
-## Component usage
-
-<DataView ... />
-
-### DataView component example label
-
-```js file="./DataViewExample.tsx"```
-```
-
-### References
-- [PatternFly React Data View GitHub](https://github.com/patternfly/react-data-view)
-- [PatternFly Data View NPM](https://www.npmjs.com/package/@patternfly/react-data-view)
-
-> **Note:** Always consult the latest PatternFly Data View documentation and demo source code for up-to-date usage patterns and best practices.
+- **Use the provided action resolver**: For row actions, use the `onRowAction` prop and provide an action resolver function. This ensures actions are handled consistently.
 
 ### Real-World Example: OpenShift Console
 
-A production example of PatternFly Data View usage can be found in the OpenShift Console codebase:
-- [DataViewPodList.tsx on GitHub](https://github.com/openshift/console/blob/79d29bca8440a5ad82b5257bb0f37bc24384eb0e/frontend/public/components/data-view-poc/DataViewPodList.tsx)
+A production example of PatternFly Data View usage can be found in the OpenShift Console codebase. It's an excellent resource for seeing how `DataView` is integrated with live Kubernetes data and Redux for state management.
 
-**Key integration patterns and best practices from this example:**
-- Integrates Data View with live Kubernetes data (pods) and application state.
-- Demonstrates how to pass dynamic data and columns to the Data View component.
-- Shows how to handle loading, error, and empty states in a real product context.
-- Illustrates the use of PatternFly composable components for custom row rendering and actions.
-- Provides a template for connecting Data View to Redux or other state management solutions.
+- **[DataViewPodList.tsx on GitHub](https://github.com/openshift/console/blob/79d29bca8440a5ad82b5257bb0f37bc24384eb0e/frontend/public/components/data-view-poc/DataViewPodList.tsx)**
+
+Key integration patterns from this example include:
+- Integrating Data View with live Kubernetes data and application state.
+- Passing dynamic data and columns to the component.
+- Handling loading, error, and empty states in a production context.
+- Using PatternFly composable components for custom row rendering and actions.
+- Connecting Data View to Redux or other state management solutions.
 
 > For advanced usage, review the linked file to see how Data View is composed with other PatternFly and application-specific components.
+
+> **Note:** Always consult the latest PatternFly Data View documentation and demo source code for the most up-to-date usage patterns and best practices.
+- [PatternFly React Data View GitHub](https://github.com/patternfly/react-data-view)
+- [PatternFly Data View NPM](https://www.npmjs.com/package/@patternfly/react-data-view)
