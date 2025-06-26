@@ -13,6 +13,221 @@ PatternFly development can present various challenges ranging from setup issues 
 - [**Setup Guide**](../setup/README.md) - Initial setup troubleshooting
 - [**External References**](../resources/external-links.md) - Additional troubleshooting resources
 
+## AI Coding Specific Issues
+
+### Component Generation Issues
+
+#### Issue: AI generates non-existent PatternFly components
+```jsx
+// ❌ AI might generate these (they don't exist)
+<TextContent>Title</TextContent>
+<EmptyStateHeader>No data</EmptyStateHeader>
+<TableHeader />
+```
+
+**Solutions**:
+1. **Use correct v6 components**:
+   ```jsx
+   // ✅ Correct v6 components
+   import { Content, EmptyState, EmptyStateBody, EmptyStateHeader } from '@patternfly/react-core';
+   
+   <Content component="h1">Title</Content>
+   
+   <EmptyState>
+     <EmptyStateHeader titleText="No data" />
+     <EmptyStateBody>Description goes here</EmptyStateBody>
+   </EmptyState>
+   ```
+
+2. **Always verify component existence** - Check [PatternFly.org](https://www.patternfly.org/) before using
+
+#### Issue: AI uses CSS modules syntax
+```jsx
+// ❌ Wrong - This doesn't work in this project
+<div className={styles.customClass}>
+```
+
+**Solutions**:
+1. **Use PatternFly utility classes**:
+   ```jsx
+   // ✅ Correct - Use PatternFly utilities
+   <div className="pf-v6-u-margin-md pf-v6-u-text-align-center">
+   ```
+
+2. **Use CSS-in-JS for custom styles**:
+   ```jsx
+   // ✅ Alternative - Inline styles when utilities don't exist
+   <div style={{ margin: 'var(--pf-v6-global--spacer--md)' }}>
+   ```
+
+#### Issue: AI uses inline styles instead of PatternFly utilities
+```jsx
+// ❌ Wrong - Avoid inline styles for layout/spacing
+<div style={{ margin: 16, textAlign: 'center' }}>
+```
+
+**Solutions**:
+1. **Use proper PatternFly component composition**:
+   ```jsx
+   // ✅ Correct - Use proper component hierarchy
+   <PageSection>
+     <Stack hasGutter>
+       <Title headingLevel="h1" size="lg">Content</Title>
+       <Content>Content description</Content>
+     </Stack>
+   </PageSection>
+   ```
+
+2. **For custom styles, use design tokens**:
+   ```jsx
+   // ✅ Only when component composition isn't sufficient
+   <div style={{ 
+     margin: 'var(--pf-v6-global--spacer--md)',
+     color: 'var(--pf-v6-global--primary-color--light)'
+   }}>
+   ```
+
+### Accessibility Issues
+
+#### Issue: AI generates components without accessibility features
+```jsx
+// ❌ Not accessible
+<Card onClick={handleClick}>
+  <CardBody>Clickable content</CardBody>
+</Card>
+```
+
+**Solutions**:
+1. **Add proper ARIA attributes**:
+   ```jsx
+   // ✅ Accessible
+   <Card 
+     isClickable
+     onClick={handleClick}
+     tabIndex={0}
+     role="button"
+     aria-label="View details"
+     onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+   >
+     <CardBody>Clickable content</CardBody>
+   </Card>
+   ```
+
+2. **Use PatternFly's built-in accessibility props**:
+   ```jsx
+   // ✅ Use component's accessibility features
+   <Card 
+     selectableActions={{
+       selectableActionAriaLabel: "View card details"
+     }}
+     onSelectableInputChange={handleClick}
+   >
+   ```
+
+### Chart Integration Issues
+
+#### Issue: Wrong chart import paths
+```bash
+# Error message
+Module not found: Can't resolve '@patternfly/react-charts'
+```
+
+**Solutions**:
+1. **Use correct import paths**:
+   ```jsx
+   // ✅ Correct - Include /victory
+   import { ChartDonut, ChartLine } from '@patternfly/react-charts/victory';
+   
+   // ❌ Wrong - Missing /victory
+   import { ChartDonut } from '@patternfly/react-charts';
+   ```
+
+2. **Install missing dependencies**:
+   ```bash
+   npm install @patternfly/react-charts victory
+   ```
+
+#### Issue: AI uses wrong chart colors
+```jsx
+// ❌ Wrong - Hardcoded colors
+<ChartDonut colorScale={['#333', '#666', '#999']} />
+```
+
+**Solutions**:
+1. **Use PatternFly chart color tokens**:
+   ```jsx
+   // ✅ Correct - Use design tokens
+   const chartColors = [
+     'var(--pf-v6-chart-color-blue-300)',
+     'var(--pf-v6-chart-color-green-300)',
+     'var(--pf-v6-chart-color-orange-300)'
+   ];
+   <ChartDonut colorScale={chartColors} />
+   ```
+
+### Chatbot Implementation Issues
+
+#### Issue: AI creates custom chat UI instead of using PatternFly Chatbot
+```jsx
+// ❌ Wrong - Custom chat implementation
+<div className="custom-chat">
+  <div className="messages">...</div>
+  <input type="text" />
+</div>
+```
+
+**Solutions**:
+1. **Use PatternFly Chatbot components**:
+   ```jsx
+   // ✅ Correct - Use PatternFly Chatbot
+   import { Chatbot, ChatbotContent, MessageBox } from '@patternfly/chatbot/dist/dynamic/Chatbot';
+   import '@patternfly/chatbot/dist/css/main.css';
+   
+   <Chatbot>
+     <ChatbotContent>
+       <MessageBox>
+         {/* Messages */}
+       </MessageBox>
+     </ChatbotContent>
+   </Chatbot>
+   ```
+
+2. **Follow official demo patterns** - Copy from [PatternFly Chatbot demos](https://www.patternfly.org/patternfly-ai/chatbot/overview)
+
+### Styling and Layout Issues
+
+#### Issue: AI mixes PatternFly versions
+```jsx
+// ❌ Wrong - Mixed versions
+<div className="pf-v5-c-button pf-v6-u-margin-md">
+```
+
+**Solutions**:
+1. **Use PatternFly v6 only**:
+   ```jsx
+   // ✅ Correct - v6 only
+   <Button className="pf-v6-u-margin-md">
+   ```
+
+#### Issue: Spacing and layout inconsistencies
+```jsx
+// ❌ Poor spacing
+<div>
+  <Button>Save</Button>
+  <Button>Cancel</Button>
+</div>
+```
+
+**Solutions**:
+1. **Use proper PatternFly component composition**:
+   ```jsx
+   // ✅ Proper spacing using ActionGroup component
+   <ActionGroup>
+     <Button variant="primary">Save</Button>
+     <Button variant="secondary">Cancel</Button>
+   </ActionGroup>
+   ```
+
 ## Setup Issues
 
 ### Node.js and npm Problems

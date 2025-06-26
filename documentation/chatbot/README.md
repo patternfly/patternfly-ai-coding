@@ -4,8 +4,8 @@ Essential rules for PatternFly Chatbot implementation and integration patterns.
 
 ## Related Files
 
-- [**Local Resources**](../resources/local-files.md) - Reference to patternfly-chatbot.txt
-- [**Component Architecture**](../guidelines/component-architecture.md) - Component structure guidelines
+- [**Component Architecture**](../guidelines/component-architecture.md) - Chatbot component structure rules
+- [**Styling Standards**](../guidelines/styling-standards.md) - CSS and styling best practices
 
 ## Installation Rules
 
@@ -189,3 +189,8 @@ const createMessage = (content, role) => ({
 - [PatternFly Chatbot GitHub Repository](https://github.com/patternfly/chatbot)
 
 > For the most up-to-date documentation and code examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.
+
+### Further Reading
+- **[PatternFly Chatbot Docs](https://www.patternfly.org/chatbot/overview/)**
+- **[Component API](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/ChipGroup)** - ChipGroup component API for tags
+- **[Accessibility Guide](https://www.patternfly.org/get-started/accessibility-guide)**
