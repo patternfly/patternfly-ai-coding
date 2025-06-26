@@ -18,23 +18,55 @@ npm install @patternfly/react-charts echarts
 ```
 
 ### Import Rules
-- ✅ **Use specific import paths** - Import from `/victory` or `/echarts` subdirectories
+- ✅ **CRITICAL: Use specific import paths** - Import from `/victory` or `/echarts` subdirectories
 - ❌ **Don't use general imports** - Avoid importing from main package
+- ⚠️ **Common Error**: AI assistants often forget the `/victory` path
 
 ```jsx
-// ✅ Correct imports
+// ✅ Correct imports - MUST include /victory
 import { ChartDonut, ChartLine, ChartBar } from '@patternfly/react-charts/victory';
 import { EChart } from '@patternfly/react-charts/echarts';
 
-// ❌ Wrong imports
+// ❌ Wrong imports - Missing /victory will cause "Module not found" errors
 import { ChartDonut } from '@patternfly/react-charts';
 ```
 
-### Troubleshooting Import Issues
-If "module not found" errors occur:
-1. **Clear cache**: `rm -rf node_modules package-lock.json`
-2. **Reinstall**: `npm install`
-3. **Verify paths**: Check import paths match installed version
+### Critical Import Path Troubleshooting
+
+**⚠️ MOST COMMON ISSUE**: Chart components cannot be found
+
+```bash
+# Error message you'll see:
+Module not found: Can't resolve '@patternfly/react-charts'
+```
+
+**Solutions in order:**
+1. **Fix import paths** - Add `/victory` to your imports:
+   ```jsx
+   // Change this:
+   import { ChartDonut } from '@patternfly/react-charts';
+   
+   // To this:
+   import { ChartDonut } from '@patternfly/react-charts/victory';
+   ```
+
+2. **Install Victory dependency**:
+   ```bash
+   npm install victory
+   ```
+
+3. **Clear cache and reinstall**:
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+4. **Verify installation**:
+   ```bash
+   # Check if both packages are installed
+   npm list @patternfly/react-charts
+   npm list victory
+   ```
 
 ## Chart Implementation Rules
 

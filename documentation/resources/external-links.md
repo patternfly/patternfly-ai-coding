@@ -8,8 +8,8 @@ External resources are essential for staying current with PatternFly updates, fi
 
 ## Related Files
 
-- [**Local Resources**](./local-files.md) - Project-specific documentation files
-- [**Code Examples**](./code-examples.md) - Reusable code snippets and patterns
+- [**Code Examples**](./code-examples.md) - Curated, reusable code snippets.
+- [**PatternFly Guidelines**](../guidelines/README.md) - Core development principles.
 - [**Setup Guide**](../setup/README.md) - Initial project setup resources
 - [**Troubleshooting**](../troubleshooting/common-issues.md) - Problem-solving resources
 

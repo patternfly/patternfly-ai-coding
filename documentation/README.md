@@ -16,6 +16,7 @@ Essential rules and guidelines for AI coders working with PatternFly React appli
 - [**PatternFly Guidelines**](./guidelines/README.md) - Core development principles
 - [**Component Rules**](./guidelines/component-architecture.md) - Component structure requirements
 - [**Styling Rules**](./guidelines/styling-standards.md) - CSS and styling requirements
+- [**AI Prompt Guidance**](./guidelines/ai-prompt-guidance.md) - How to write effective AI prompts
 - [**Deployment Guide**](./guidelines/deployment-guide.md) - How to deploy prototypes
 
 ### 🧩 Component Rules
@@ -32,7 +33,6 @@ Essential rules and guidelines for AI coders working with PatternFly React appli
 
 ### 📖 Resources
 - [**External Links**](./resources/external-links.md) - Official documentation links
-- [**Local Files**](./resources/local-files.md) - Project-specific resources
 
 ## Usage Rules for AI Coders
 
@@ -42,6 +42,17 @@ Essential rules and guidelines for AI coders working with PatternFly React appli
 4. **Follow accessibility** - Implement proper ARIA labels and keyboard navigation
 5. **Use utility classes** - Prefer PatternFly utilities over custom CSS
 6. **Handle states** - Always implement loading, error, and empty states
+
+## ⚠️ Common AI Coding Issues Addressed
+
+Based on feedback, these rules prevent frequent AI-generated errors:
+
+- **❌ No CSS modules syntax** - `className={styles.x}` doesn't work in this project
+- **❌ No non-existent components** - Verify components exist before using
+- **❌ No inline styles for layout** - Use PatternFly utilities instead
+- **✅ Chart imports must include `/victory`** - Critical for chart components
+- **✅ Always include accessibility attributes** - Keyboard navigation and ARIA labels
+- **✅ Use specific, detailed prompts** - See [AI Prompt Guidance](./guidelines/ai-prompt-guidance.md)
 
 ## Documentation Structure
 

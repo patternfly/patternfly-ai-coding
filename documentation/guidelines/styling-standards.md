@@ -24,35 +24,93 @@ Essential CSS and styling rules for PatternFly React applications.
 .pf-c-button
 ```
 
-## Utility-First Rules
+## Component Composition Rules
 
-> **No inline styles:** Use PatternFly layout and spacing utilities instead of `style` props or custom CSS for layout and spacing.
+> **Component-first approach:** Use proper PatternFly component composition for layout and spacing. Components should be children of appropriate containers like PageSection, ActionGroup, Stack, etc.
 
-### Use PatternFly Utilities First
+### Use Component Composition First
 ```jsx
-// ✅ Correct - Use PatternFly utilities
-<div className="pf-v6-u-text-align-center pf-v6-u-margin-md">
+// ✅ Correct - Use proper component composition
+<PageSection>
+  <Stack hasGutter>
+    <Title headingLevel="h1">Dashboard</Title>
+    <Content>Dashboard content</Content>
+  </Stack>
+</PageSection>
 
-// ❌ Wrong - Custom CSS when utilities exist
-<div className="custom-centered-title">
+// ❌ Wrong - Utility classes for basic layout
+<div className="pf-v6-u-margin-md">
+  <div className="pf-v6-u-margin-bottom-sm">Dashboard</div>
+  <div>Dashboard content</div>
+</div>
 ```
 
-### Common Utility Patterns
-```css
-/* Spacing */
-.pf-v6-u-margin-{xs|sm|md|lg|xl}
-.pf-v6-u-padding-{xs|sm|md|lg|xl}
-.pf-v6-u-margin-top-md
-.pf-v6-u-padding-left-lg
+### Use Component Props Second
+```jsx
+// ✅ Correct - Use component props for spacing and layout
+<Table borders={false} gridBreakPoint="grid-lg">
+  <Thead>
+    <Tr>
+      <Th modifier="nowrap">Name</Th>
+    </Tr>
+  </Thead>
+</Table>
 
-/* Typography */
-.pf-v6-u-text-align-{left|center|right}
-.pf-v6-u-font-weight-{light|normal|bold}
-.pf-v6-u-font-size-{sm|md|lg}
+<ActionGroup>
+  <Button variant="primary">Save</Button>
+  <Button variant="secondary">Cancel</Button>
+</ActionGroup>
 
-/* Colors */
-.pf-v6-u-color-{primary|secondary|success|warning|danger}
-.pf-v6-u-background-color-primary
+// ❌ Wrong - Utility classes when component props exist
+<Table className="pf-v6-u-margin-md">
+  <Button className="pf-v6-u-margin-right-sm">Save</Button>
+  <Button>Cancel</Button>
+</Table>
+```
+
+### Common Component Patterns for Layout
+```jsx
+// Page structure
+<PageSection>
+  <Stack hasGutter>
+    <Title headingLevel="h1">Page Title</Title>
+    <Grid hasGutter>
+      <GridItem span={8}>
+        <Card>
+          <CardTitle>Card Title</CardTitle>
+          <CardBody>Card content</CardBody>
+        </Card>
+      </GridItem>
+    </Grid>
+  </Stack>
+</PageSection>
+
+// Form structure
+<Form>
+  <FormGroup label="Username">
+    <TextInput />
+  </FormGroup>
+  <ActionGroup>
+    <Button variant="primary">Submit</Button>
+  </ActionGroup>
+</Form>
+```
+
+### When to Use Utility Classes
+Use utility classes only when:
+- Component composition doesn't provide the needed layout
+- Component props don't offer the required styling
+- You need to override specific styling for edge cases
+
+```jsx
+// ✅ Acceptable utility usage - when component props aren't sufficient
+<Card className="pf-v6-u-height-100"> {/* Force card to full height */}
+  <CardBody>
+    <Text className="pf-v6-u-text-align-center"> {/* Center text when component doesn't provide prop */}
+      Centered content
+    </Text>
+  </CardBody>
+</Card>
 ```
 
 ## Design Token Rules
@@ -116,16 +174,34 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ### Button Styling
 ```jsx
-// ✅ Use PatternFly variants
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
+// ✅ Use PatternFly variants and ActionGroup for spacing
+<ActionGroup>
+  <Button variant="primary">Save</Button>
+  <Button variant="secondary">Cancel</Button>
+</ActionGroup>
 
-// ✅ Add utilities for spacing
-<Button className="pf-v6-u-margin-right-sm">Save</Button>
+// ❌ Wrong - Utility classes for button spacing
+<div>
+  <Button className="pf-v6-u-margin-right-sm">Save</Button>
+  <Button>Cancel</Button>
+</div>
 ```
 
 ### Form Styling
 ```jsx
+// ✅ Use PageSection and proper form structure
+<PageSection>
+  <Form>
+    <FormGroup label="Username" isRequired>
+      <TextInput />
+    </FormGroup>
+    <ActionGroup>
+      <Button variant="primary">Submit</Button>
+    </ActionGroup>
+  </Form>
+</PageSection>
+
+// ❌ Wrong - Utility classes for form layout
 <Form className="pf-v6-u-margin-md">
   <FormGroup label="Username" isRequired>
     <TextInput className="pf-v6-u-width-100" />
@@ -158,20 +234,20 @@ Essential CSS and styling rules for PatternFly React applications.
 ## Essential Do's and Don'ts
 
 ### ✅ Do's
-- Use PatternFly v6 classes exclusively
-- Prefer component props and API for styling before using utility classes
-- Use utility classes minimally, with comments explaining their necessity
-- Use PatternFly design tokens for custom styles
+- Use proper PatternFly component composition (PageSection, Stack, Grid, ActionGroup)
+- Leverage component props for spacing, borders, and layout (Table borders, ActionGroup spacing)
+- Use PatternFly v6 components and design patterns exclusively
+- Use utility classes only as a last resort when composition and props aren't sufficient
+- Use PatternFly design tokens for any custom styles
 - Test responsive behavior on different screen sizes
-- Follow mobile-first responsive patterns
 
 ### ❌ Don'ts
-- Over-rely on utility classes to force component appearance
+- Use utility classes for basic layout when proper component composition exists
+- Skip using component props in favor of utility classes
 - Mix PatternFly versions
 - Override PatternFly component internals
 - Use hardcoded values instead of design tokens
-- Create custom CSS when utilities exist
-- Ignore responsive design requirements
+- Create custom layout when PatternFly layout components exist
 
 ## Quick Reference
 - **[PatternFly Utilities](https://www.patternfly.org/utilities)** - Complete utility documentation
@@ -180,16 +256,46 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ## Do/Don't Examples
 
-### No Inline Styles
+### Proper Layout and Spacing
 **Do:**
 ```jsx
-// Use PatternFly utility classes
-<div className="pf-v6-u-margin-md pf-v6-u-text-align-center">Content</div>
+// Use proper component composition
+<PageSection>
+  <Stack hasGutter>
+    <Title headingLevel="h1" size="lg">Content Title</Title>
+    <Content>Content goes here</Content>
+  </Stack>
+</PageSection>
 ```
 **Don't:**
 ```jsx
-// Avoid style props for layout/spacing
+// Avoid inline styles or utility classes for basic layout
 <div style={{ margin: 16, textAlign: 'center' }}>Content</div>
+<div className="pf-v6-u-margin-md pf-v6-u-text-align-center">Content</div>
+```
+
+### Use Component Props for Spacing
+**Do:**
+```jsx
+// Use component props when available
+<Table borders={false} gridBreakPoint="grid-md">
+  <Thead>
+    <Tr>
+      <Th modifier="nowrap">Name</Th>
+    </Tr>
+  </Thead>
+</Table>
+```
+**Don't:**
+```jsx
+// Don't use utility classes when component props exist
+<Table className="pf-v6-u-margin-md">
+  <Thead>
+    <Tr>
+      <Th className="pf-v6-u-white-space-nowrap">Name</Th>
+    </Tr>
+  </Thead>
+</Table>
 ```
 
 ### No Emojis or Raw Icons
