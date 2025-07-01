@@ -11,16 +11,17 @@ Essential CSS and styling rules for PatternFly React applications.
 
 ### PatternFly v6 Requirements
 - ✅ **ALWAYS use `pf-v6-` prefix** - All PatternFly v6 classes
-- ❌ **NEVER use legacy prefixes** - No `pf-v5-`, `pf-v4-`, or `pf-c-`
+- ❌ **NEVER use legacy prefixes** - No `pf-v5-`, `pf-v4-`, `pf-u` or `pf-c-`
 
 ```css
 /* ✅ Correct v6 classes */
 .pf-v6-c-button          /* Components */
-.pf-v6-u-margin-md       /* Utilities */
+.pf-v6-u-m-md            /* Utilities */
 .pf-v6-l-grid            /* Layouts */
 
 /* ❌ Wrong - Don't use these */
 .pf-v5-c-button
+.pf-u-m-md
 .pf-c-button
 ```
 
@@ -39,8 +40,8 @@ Essential CSS and styling rules for PatternFly React applications.
 </PageSection>
 
 // ❌ Wrong - Utility classes for basic layout
-<div className="pf-v6-u-margin-md">
-  <div className="pf-v6-u-margin-bottom-sm">Dashboard</div>
+<div className="pf-v6-u-m-md">
+  <div className="pf-v6-u-mb-sm">Dashboard</div>
   <div>Dashboard content</div>
 </div>
 ```
@@ -62,8 +63,8 @@ Essential CSS and styling rules for PatternFly React applications.
 </ActionGroup>
 
 // ❌ Wrong - Utility classes when component props exist
-<Table className="pf-v6-u-margin-md">
-  <Button className="pf-v6-u-margin-right-sm">Save</Button>
+<Table className="pf-v6-u-m-md">
+  <Button className="pf-v6-u-mr-sm">Save</Button>
   <Button>Cancel</Button>
 </Table>
 ```
@@ -104,7 +105,7 @@ Use utility classes only when:
 
 ```jsx
 // ✅ Acceptable utility usage - when component props aren't sufficient
-<Card className="pf-v6-u-height-100"> {/* Force card to full height */}
+<Card className="pf-v6-u-h-100"> {/* Force card to full height */}
   <CardBody>
     <Text className="pf-v6-u-text-align-center"> {/* Center text when component doesn't provide prop */}
       Centered content
@@ -116,18 +117,18 @@ Use utility classes only when:
 ## Design Token Rules
 
 ### Use Semantic PatternFly Tokens for Custom CSS
-- ✅ **Use semantic tokens** (e.g., `--pf-v6-global--primary-color--light`) for custom CSS. These tokens do not end in numbers and are intended for application-level styling.
-- ❌ **Don't use base tokens** (which end in numbers, e.g., `--pf-v6-global--Color--100`) for custom CSS. Base tokens are for internal PatternFly use and may change.
+- ✅ **Use semantic tokens** (e.g., `--pf-t--global--text--color--regular`) for custom CSS. These tokens do not end in numbers and are intended for application-level styling.
+- ❌ **Don't use base tokens** (which end in numbers, e.g., `--pf-t--global--text--color--100`) for custom CSS. Base tokens are for internal PatternFly use and may change.
 
 ```css
 .custom-component {
   /* ✅ Correct - Use semantic tokens */
-  color: var(--pf-v6-global--primary-color--light);
-  margin: var(--pf-v6-global--spacer--md);
+  color: var(--pf-t--global--text--color--regular);
+  margin: var(--pf-t-global--spacer--md);
   
   /* ❌ Wrong - Hardcoded values or base tokens */
   /* color: #333333; */
-  /* color: var(--pf-v6-global--Color--100); */
+  /* color: var`--pf-t--global--text--color--100); */
   /* margin: 16px; */
 }
 ```
@@ -135,16 +136,16 @@ Use utility classes only when:
 ### Essential Token Categories
 ```css
 /* Semantic Colors */
---pf-v6-global--primary-color--light
---pf-v6-global--primary-color--dark
---pf-v6-global--background-color--light
+--pf-t--global--text--color--regular
+--pf-t--global--text--color--subtle
+--pf-t--global--background--color--primary--default
 
 /* Spacing */
---pf-v6-global--spacer--{xs|sm|md|lg|xl}
+--pf-t-global--spacer--{xs|sm|md|lg|xl}
 
 /* Typography */
---pf-v6-global--FontFamily--text
---pf-v6-global--FontSize--md
+--pf-t--global--font--family--body	
+--pf-t--global--font--size--md	
 ```
 
 ## Responsive Design Rules
@@ -325,3 +326,94 @@ import { Title, Content } from '@patternfly/react-core';
 ---
 
 > **Note:** `PageHeader` is not a PatternFly component in v6+. Use `PageSection`, `Title`, and layout components instead.
+
+## Spacing and Inline Styles
+
+- ✅ **Always use PatternFly spacing variables (design tokens) for all spacing, including in inline style props.**
+- ❌ **Do not use hardcoded numbers for margin, padding, or other spacing in inline styles.**
+
+**Correct:**
+```jsx
+<div style={{ marginBottom: 'var(--pf-t--global--spacer-lg)' }} />
+```
+
+**Incorrect:**
+```jsx
+<div style={{ marginBottom: 24 }} />
+```
+
+## Utility Classes vs Inline Styles
+
+- ✅ **Prefer using PatternFly utility classes for spacing, alignment, and layout instead of inline styles.**
+- ❌ **Only use inline styles if a PatternFly utility class does not exist for the required spacing or layout.**
+
+**Correct:**
+```jsx
+<div className="pf-v6-u-mb-lg" />
+```
+
+**Incorrect:**
+```jsx
+<div style={{ marginBottom: 'var(--pf-t--global--spacer-lg)' }} />
+```
+
+## External Link Buttons
+
+- ✅ **Always add an external link icon to the right of the text for external link buttons.**
+- ❌ **Do not omit the external link icon for buttons that open external sites.**
+
+**Correct:**
+```jsx
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+<Button
+  variant="link"
+  component="a"
+  href="https://patternfly.org"
+  target="_blank"
+  rel="noopener noreferrer"
+  icon={<ExternalLinkAltIcon />}
+  iconPosition="right"
+>
+  Learn more
+</Button>
+```
+
+**Incorrect:**
+```jsx
+<Button
+  variant="link"
+  component="a"
+  href="https://patternfly.org"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Learn more
+</Button>
+```
+
+## Toolbar Alignment
+
+- ✅ **When right-aligning content in a PatternFly Toolbar, use the ToolbarItem align={{ default: 'alignEnd' }} prop.**
+- ❌ **Do not use custom Flex wrappers or utility classes to right-align Toolbar content.**
+
+**Correct:**
+```jsx
+<Toolbar>
+  <ToolbarContent>
+    <ToolbarItem>Left content</ToolbarItem>
+    <ToolbarItem align={{ default: 'alignEnd' }}>Right-aligned content</ToolbarItem>
+  </ToolbarContent>
+</Toolbar>
+```
+
+**Incorrect:**
+```jsx
+<Toolbar>
+  <ToolbarContent>
+    <ToolbarItem>Left content</ToolbarItem>
+    <Flex style={{ flex: 1 }} justifyContent={{ default: 'justifyContentFlexEnd' }}>
+      <FlexItem>Right-aligned content</FlexItem>
+    </Flex>
+  </ToolbarContent>
+</Toolbar>
+```

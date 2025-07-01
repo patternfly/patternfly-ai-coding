@@ -29,6 +29,19 @@ External resources are essential for staying current with PatternFly updates, fi
 - **[Page Component](https://www.patternfly.org/components/page)** - Page layout and structure
 - **[Icon Component](https://www.patternfly.org/components/icon)** - Icon usage and sizing
 
+### Utility Classes Documentation
+- **[Accessibility](https://www.patternfly.org/utility-classes/accessibility)** - Accessibilty utility classes
+- **[Alignment](https://www.patternfly.org/utility-classes/alignment)** - Alignment utility classes
+- **[Background color](https://www.patternfly.org/utility-classes/background-color)** - Background utility classes
+- **[Box shadow](https://www.patternfly.org/utility-classes/box-shadow)** - Box shadow utility classes
+- **[Display](https://www.patternfly.org/utility-classes/accessibility)** - Display utility classes
+- **[Flex](https://www.patternfly.org/utility-classes/flex)** - Flex utility classes
+- **[Float](https://www.patternfly.org/utility-classes/float)** - Float utility classes
+- **[Sizing](https://www.patternfly.org/utility-classes/sizing)** - Sizing utility classes
+- **[Spacing](https://www.patternfly.org/utility-classes/spacing)** - Spacing utility classes
+- **[Text](https://www.patternfly.org/utility-classes/text)** - Text utility classes
+
+
 ### Specialized Features
 - **[PatternFly Charts](https://www.patternfly.org/charts/about)** - Data visualization guidelines
 - **[PatternFly AI - Chatbot](https://www.patternfly.org/patternfly-ai/chatbot/overview)** - AI chatbot components

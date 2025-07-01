@@ -22,6 +22,9 @@ Core development rules for AI coders building PatternFly React applications.
 - ✅ **Compose components** - Build complex UIs by combining PatternFly components
 - ❌ **Don't override component internals** - Use provided props and APIs
 
+### Tokenss
+- ✅ **ALWAYS use PatternFly tokens** - Use `pf-t-` prefixed classes over `pf-v6-` classes (e.g., `var(--pf-t--global--spacer--sm)` not `var(--pf-v6-global--spacer--sm)`)
+
 ### Text Components (v6+)
 ```jsx
 // ✅ Correct
@@ -43,7 +46,7 @@ import { UserIcon } from '@patternfly/react-icons';
 ### Styling Rules
 
 - ✅ **Use PatternFly utilities** - Before writing custom CSS
-- ✅ **Use semantic design tokens** for custom CSS (e.g., `var(--pf-v6-global--primary-color--light)`), not base tokens with numbers (e.g., `--pf-v6-global--Color--100`) or hardcoded values
+- ✅ **Use semantic design tokens** for custom CSS (e.g., `var(--pf-t--global--text--color--regular)`), not base tokens with numbers (e.g., `--pf-t--global--text--color--100`) or hardcoded values
 - ❌ **Don't mix PatternFly versions** - Stick to v6 throughout
 
 ### Documentation Requirements

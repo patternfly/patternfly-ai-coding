@@ -57,7 +57,7 @@ PatternFly development can present various challenges ranging from setup issues 
 2. **Use CSS-in-JS for custom styles**:
    ```jsx
    // ✅ Alternative - Inline styles when utilities don't exist
-   <div style={{ margin: 'var(--pf-v6-global--spacer--md)' }}>
+   <div style={{ margin: 'var(--pf-t--global--spacer--md)' }}>
    ```
 
 #### Issue: AI uses inline styles instead of PatternFly utilities
@@ -82,8 +82,8 @@ PatternFly development can present various challenges ranging from setup issues 
    ```jsx
    // ✅ Only when component composition isn't sufficient
    <div style={{ 
-     margin: 'var(--pf-v6-global--spacer--md)',
-     color: 'var(--pf-v6-global--primary-color--light)'
+     margin: 'var(--pf-t--global--spacer--md)',
+     color: 'var(--pf-t--global--text--color--regular)'
    }}>
    ```
 
@@ -536,6 +536,38 @@ Module not found: Can't resolve '@patternfly/chatbot/dist/dynamic/Chatbot'
    // Instead of manual classes, use components
    import { Button } from '@patternfly/react-core';
    <Button variant="primary">Click me</Button>
+   ```
+
+#### Issue: PatternFly utility class styles not applied
+```bash
+# Symptoms: Adding utility classes (pf-v6-u-*) do not have any apparent effect
+```
+
+**Solutions**:
+1. **Install patternfly package**:
+   ```bash
+   npm install @patternfly/patternfly
+   ```
+
+2. **Import PatternFly Utility CSS**:
+   ```jsx
+   // In your main App.js or index.js
+   import '@patternfly/patternfly/patternfly-addons.css';
+   ```
+  
+3. **Verify webpack CSS handling**:
+   ```javascript
+   // webpack.config.js
+   module.exports = {
+     module: {
+       rules: [
+         {
+           test: /\.css$/,
+           use: ['style-loader', 'css-loader']
+         }
+       ]
+     }
+   };
    ```
 
 ### Layout and Responsive Issues

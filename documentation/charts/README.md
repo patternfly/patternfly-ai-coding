@@ -15,6 +15,9 @@ npm install @patternfly/react-charts victory
 
 # ✅ ECharts-based charts (alternative)
 npm install @patternfly/react-charts echarts
+
+# ✅ Patternfly for charts css variables (recommended)
+npm install @patternfly/patternfly
 ```
 
 ### Import Rules
@@ -30,6 +33,12 @@ import { EChart } from '@patternfly/react-charts/echarts';
 // ❌ Wrong imports - Missing /victory will cause "Module not found" errors
 import { ChartDonut } from '@patternfly/react-charts';
 ```
+
+### Import PatternFly Charts CSS
+   ```jsx
+   // In your main App.js or index.js
+   import '@patternfly/patternfly/patternfly-charts.css';
+   ```
 
 ### Critical Import Path Troubleshooting
 
@@ -77,9 +86,9 @@ Module not found: Can't resolve '@patternfly/react-charts'
 ```jsx
 // ✅ Correct - Use PatternFly color tokens
 const chartColors = [
-  'var(--pf-v6-chart-color-blue-300)',
-  'var(--pf-v6-chart-color-green-300)',
-  'var(--pf-v6-chart-color-orange-300)'
+  'var(--pf-t--chart--color--blue--300)',
+  'var(--pf-t--chart--color--green--300)',
+  'var(--pf-t--chart--color--orange--300)'
 ];
 
 <ChartDonut data={data} colorScale={chartColors} />
@@ -210,6 +219,23 @@ const LazyChart = lazy(() => import('./HeavyChart'));
 - **Implement lazy loading**: For heavy chart components
 - **Optimize re-renders**: Use React.memo for chart components
 
+#### Issue: Chart colors not correct
+```bash
+# Symptoms: Chart color variables (--pf-v6-chart-color-blue-100, --pf-t--chart--color--blue--300) are not defined
+```
+
+**Solutions**:
+1. **Install patternfly package**:
+   ```bash
+   npm install @patternfly/patternfly
+   ```
+
+2. **Import PatternFly Charts CSS**:
+   ```jsx
+   // In your main App.js or index.js
+   import '@patternfly/patternfly/patternfly-charts.css';
+   ```
+  
 ## Quick Reference
 - **[PatternFly Charts README](https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme)** - Installation and usage
 - **[Victory.js Documentation](https://formidable.com/open-source/victory/)** - Chart library documentation
