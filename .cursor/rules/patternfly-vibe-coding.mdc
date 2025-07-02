@@ -13,8 +13,8 @@ This rule applies to all code generation, refactoring, and review tasks involvin
 
 ## Documentation to Reference
 - The root `README.md`
-- The `documentation/README.md` file, which serves as the table of contents for all documentation in the `documentation/` directory and its subdirectories. Use this file to discover and navigate all relevant rules, guidelines, and best practices for PatternFly development.
-- All markdown files referenced by `documentation/README.md`.
+- The `.pf-ai-documentation/README.md` file, which serves as the table of contents for all documentation in the `.pf-ai-documentation/` directory and its subdirectories. Use this file to discover and navigate all relevant rules, guidelines, and best practices for PatternFly development.
+- All markdown files referenced by `.pf-ai-documentation/README.md`.
 
 ## Rule
 - **Always consult the above documentation before generating or editing any PatternFly code.**

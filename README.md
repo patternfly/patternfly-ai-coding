@@ -4,7 +4,7 @@
 This repository is for individuals and AI agents who want to prototype PatternFly applications using the latest best practices, with AI assistance (Cursor, Copilot, ChatGPT, etc.).
 
 ## Quick Start (TL;DR)
-1. **Clone or copy this repo (or at least the `documentation/` directory and `.cursor/rules/` files) into your project.**
+1. **Clone or copy this repo (or at least the `.pf-ai-documentation/` directory and `.cursor/rules/` files) into your project.**
 2. **Open your project in Cursor or your preferred AI coding tool.**
 3. (Optional) **Set up context7 MCP for always-up-to-date PatternFly docs.**
 
@@ -14,7 +14,7 @@ The primary aim is to offer a comprehensive, AI-friendly knowledge base and star
 ## Core Components
 The core components of this repository are the README and markdown files found throughout the project. These files provide indexed documentation, guidelines, and best practices to support AI-assisted PatternFly development, regardless of which AI coding tool you use.
 
-- **Table of Contents:** See [`documentation/README.md`](documentation/README.md) for a full table of contents and navigation to all rules, guides, and best practices.
+- **Table of Contents:** See [`.pf-ai-documentation/README.md`](documentation/README.md) for a full table of contents and navigation to all rules, guides, and best practices.
 
 ## Using This Documentation with Cursor and AI Tools
 
@@ -23,7 +23,7 @@ The core components of this repository are the README and markdown files found t
 
 ### Best Practice: Add Documentation Locally
 To get the full benefit of these docs and rules:
-1. **Clone or copy this repository (or at least the `documentation/` directory and `.cursor/rules/` files) into your project.**
+1. **Clone or copy this repository (or at least the `.pf-ai-documentation/` directory and `.cursor/rules/` files) into your project.**
 2. **Open your project in Cursor (or your preferred AI coding tool).**
 3. **Keep your local docs up to date** by pulling changes from this repo as it evolves.
 

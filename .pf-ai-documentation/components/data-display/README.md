@@ -213,3 +213,10 @@ Key integration patterns from this example include:
 > **Note:** Always consult the latest PatternFly Data View documentation and demo source code for the most up-to-date usage patterns and best practices.
 - [PatternFly React Data View GitHub](https://github.com/patternfly/react-data-view)
 - [PatternFly Data View NPM](https://www.npmjs.com/package/@patternfly/react-data-view)
+
+## Empty State Button Placement Rules
+
+- ✅ **Place all buttons in an EmptyState inside the `EmptyStateFooter` component.**
+- ✅ **Group each row of buttons within an `EmptyStateActions` container inside the `EmptyStateFooter`.**
+- ✅ **Use a separate `EmptyStateActions` for each row of actions if multiple rows are needed.**
+- ❌ **Do not place buttons directly inside `EmptyState` or `EmptyStateBody`.**
