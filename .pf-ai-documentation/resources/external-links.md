@@ -8,7 +8,6 @@ External resources are essential for staying current with PatternFly updates, fi
 
 ## Related Files
 
-- [**Code Examples**](./code-examples.md) - Curated, reusable code snippets.
 - [**PatternFly Guidelines**](../guidelines/README.md) - Core development principles.
 - [**Setup Guide**](../setup/README.md) - Initial project setup resources
 - [**Troubleshooting**](../troubleshooting/common-issues.md) - Problem-solving resources
@@ -34,7 +33,7 @@ External resources are essential for staying current with PatternFly updates, fi
 - **[Alignment](https://www.patternfly.org/utility-classes/alignment)** - Alignment utility classes
 - **[Background color](https://www.patternfly.org/utility-classes/background-color)** - Background utility classes
 - **[Box shadow](https://www.patternfly.org/utility-classes/box-shadow)** - Box shadow utility classes
-- **[Display](https://www.patternfly.org/utility-classes/accessibility)** - Display utility classes
+- **[Display](https://www.patternfly.org/utility-classes/display)** - Display utility classes
 - **[Flex](https://www.patternfly.org/utility-classes/flex)** - Flex utility classes
 - **[Float](https://www.patternfly.org/utility-classes/float)** - Float utility classes
 - **[Sizing](https://www.patternfly.org/utility-classes/sizing)** - Sizing utility classes

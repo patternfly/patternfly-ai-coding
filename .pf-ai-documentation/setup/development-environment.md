@@ -11,7 +11,6 @@ A properly configured development environment enhances productivity and ensures 
 - [**Setup Guide**](./README.md) - Initial project setup
 - [**Quick Start**](./quick-start.md) - Project initialization steps
 - [**Styling Standards**](../guidelines/styling-standards.md) - CSS and styling configuration
-- [**Performance Optimization**](../troubleshooting/performance.md) - Development performance tips
 
 ## Development Server Configuration
 
