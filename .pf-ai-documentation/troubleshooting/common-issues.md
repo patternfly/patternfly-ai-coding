@@ -8,8 +8,6 @@ PatternFly development can present various challenges ranging from setup issues 
 
 ## Related Files
 
-- [**Component Issues**](./component-issues.md) - Component-specific troubleshooting
-- [**Performance Optimization**](./performance.md) - Performance-related problems and solutions
 - [**Setup Guide**](../setup/README.md) - Initial setup troubleshooting
 - [**External References**](../resources/external-links.md) - Additional troubleshooting resources
 

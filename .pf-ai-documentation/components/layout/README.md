@@ -10,15 +10,13 @@ PatternFly layout components provide the foundation for structuring application 
 
 ## Reference Documentation
 
-- [PatternFly Layouts on PatternFly.org](https://www.patternfly.org/layouts)
+- [PatternFly Layouts on PatternFly.org](https://www.patternfly.org/layouts/about-layouts)
 - [PatternFly React GitHub Repository](https://github.com/patternfly/patternfly-react)
 
 > For the most up-to-date documentation and code examples, consult both PatternFly.org and the official GitHub repository. When using AI tools, leverage context7 to fetch the latest docs from these sources.
 
 ## Related Files
 
-- [**Page Sections**](./page-sections.md) - PageSection component usage and patterns
-- [**Grid System**](./grid-system.md) - Grid layout and responsive design
 - [**Component Architecture**](../../guidelines/component-architecture.md) - Component structure patterns
 - [**Styling Standards**](../../guidelines/styling-standards.md) - Layout styling guidelines
 
@@ -40,7 +38,7 @@ This section describes common page layout patterns and links to their official d
 ### Standard Page Layout
 A standard page layout typically consists of a page title, an optional toolbar for actions, and a main content area.
 
-- [**Page Layout Documentation**](https://www.patternfly.org/layouts/page)
+- [**Page Layout Documentation**](https://www.patternfly.org/components/page/design-guidelines)
 - [**Page Component Examples on GitHub**](https://github.com/patternfly/patternfly-react/tree/main/packages/react-core/src/components/Page/examples)
 
 ### Dashboard Layout
