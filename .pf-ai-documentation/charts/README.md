@@ -110,9 +110,9 @@ Module not found: Can't resolve '@patternfly/react-charts'
 ```jsx
 // ✅ Correct - Use PatternFly color tokens
 const chartColors = [
-  'var(--pf-t--chart--color--blue--300)',
-  'var(--pf-t--chart--color--green--300)',
-  'var(--pf-t--chart--color--orange--300)'
+  'var(--pf-t--chart--color--[color family 1]--300)',
+  'var(--pf-t--chart--color--[color family 2]--300)',
+  'var(--pf-t--chart--color--[color family 3]--300)'
 ];
 
 <ChartDonut data={data} colorScale={chartColors} />
@@ -263,7 +263,8 @@ const LazyChart = lazy(() => import('./HeavyChart'));
 ## Quick Reference
 - **[PatternFly Charts README](https://github.com/patternfly/patternfly-react/tree/main/packages/react-charts#readme)** - Installation and usage
 - **[Victory.js Documentation](https://formidable.com/open-source/victory/)** - Chart library documentation
-- **[PatternFly Chart Guidelines](https://www.patternfly.org/charts/about)** - Design guidelines
+- **[PatternFly Chart Guidelines](https://www.patternfly.org/charts/about-charts)** - Design guidelines
+- **[PatternFly Chart Colors](https://www.patternfly.org/charts/colors-for-charts)** - Colors for charts
 
 ## Reference Documentation
 
