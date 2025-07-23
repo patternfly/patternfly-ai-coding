@@ -75,6 +75,34 @@ Module not found: Can't resolve '@patternfly/react-charts'
 
 ## Chart Implementation Rules
 
+### Best Practices
+
+### Color families
+- Chart color families include
+  - red-orange
+  - orange
+  - yellow
+  - teal
+  - green
+  - blue
+  - purple
+  - black
+- Use the same brightness of colors first, then use other brightness
+  - Base: 300
+  - Lightest: 100
+  - Darkest: 500
+  - Second-lightest: 200
+  - Second-darkest: 400
+ - Use PatternFly tokens to define your color variables
+   - --pf-t-chart-color-[color-family]-[brightness]
+     - example: --pf-t-chart-color-blue-300
+- When selecting colors for your chart, adhere to these general rules:
+  - Within a color family, use the base color first. Then use the other lighter and darker hues.
+  - Some families have predetermined uses:
+    - Blue: Use to show success.
+    - Red-orange: Use to show failure. Do not use this family unless you're communicating failure.
+    - Other colors: Use for neutral purposes or categories.
+
 ### Color Rules
 - ✅ **Use PatternFly chart color tokens** - For consistency with design system
 - ❌ **Don't use hardcoded colors** - Use design tokens instead
