@@ -156,9 +156,9 @@ Module not found: Can't resolve '@patternfly/react-charts'
    ```jsx
    // ✅ Correct - Use design tokens
    const chartColors = [
-     'var(--pf-v6-chart-color-blue-300)',
-     'var(--pf-v6-chart-color-green-300)',
-     'var(--pf-v6-chart-color-orange-300)'
+     'var(--pf-t-chart-color-blue-300)',
+     'var(--pf-t-chart-color-green-300)',
+     'var(--pf-t-chart-color-orange-300)'
    ];
    <ChartDonut colorScale={chartColors} />
    ```
